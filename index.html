@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generator Zaproszeń Ślubnych</title>
+  <title>Generator Zaproszeń Ślubnych z Efektami</title>
   
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #f5f5f5;
+      background-color: #f8f9fa;
+      color: #333;
     }
     
     h1 {
-      color: #333;
+      color: #6c5b7b;
       text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
     }
     
-    .container {
-      max-width: 800px;
+    .main-container {
+      display: flex;
+      max-width: 1400px;
       margin: 0 auto;
+      gap: 20px;
+    }
+    
+    .sidebar {
+      width: 30%;
       background-color: white;
       padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .content-area {
+      width: 70%;
+      position: relative;
     }
     
     .button {
-      background-color: #4CAF50;
+      background-color: #6c5b7b;
       border: none;
       color: white;
       padding: 10px 20px;
@@ -39,33 +53,45 @@
       margin: 10px 2px;
       cursor: pointer;
       border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    .button:hover {
+      background-color: #5a4a67;
     }
     
     .preview {
       width: 100%;
-      height: 500px;
+      height: 600px;
       border: 1px solid #ddd;
       margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
     }
     
     .status {
       margin-top: 20px;
-      padding: 10px;
-      background-color: #f8f8f8;
-      border-left: 5px solid #4CAF50;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-left: 5px solid #6c5b7b;
+      border-radius: 4px;
+      font-size: 14px;
     }
     
     .guest-list {
       margin-top: 20px;
-      height: 300px;
+      height: 400px;
       overflow-y: auto;
       border: 1px solid #ddd;
       padding: 10px;
+      border-radius: 6px;
     }
     
     .guest-item {
-      padding: 5px;
+      padding: 10px;
       cursor: pointer;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
     }
     
     .guest-item:hover {
@@ -73,37 +99,387 @@
     }
     
     .selected {
-      background-color: #e0e0e0;
+      background-color: #efe5fd;
+      border-left: 3px solid #6c5b7b;
+    }
+    
+    .popup-image {
+      position: fixed;
+      z-index: 9999;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      display: none;
+      max-width: 250px;
+      max-height: 250px;
+      transform-origin: center;
+    }
+    
+    .popup-image.show {
+      display: block;
+      animation: pulse 1s;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
     }
     
     @media print {
-      .container, .button, .guest-list, h1, .status {
+      .sidebar, .button, .search-box, .controls, h1, .quiz-container, .download-container {
         display: none;
       }
+      
+      .main-container {
+        display: block;
+      }
+      
+      .content-area {
+        width: 100%;
+      }
+      
+      .popup-image {
+        display: none !important;
+      }
+    }
+    
+    /* Style dla quizu */
+    .quiz-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f5f0ff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+    
+    .quiz-question h3 {
+      color: #6c5b7b;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .quiz-option {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .quiz-option:hover {
+      background-color: #efe5fd;
+      border-color: #6c5b7b;
+    }
+    
+    .download-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #e5ffea;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    
+    .download-container h3 {
+      color: #4a7a55;
+      margin-bottom: 15px;
+    }
+    
+    #finalDownloadButton {
+      background-color: #4a7a55;
+      padding: 15px 30px;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    
+    #finalDownloadButton:hover {
+      background-color: #3d6347;
+    }
+    
+    /* Dodatkowe style dla responsywności */
+    @media (max-width: 1024px) {
+      .main-container {
+        flex-direction: column;
+      }
+      
+      .sidebar, .content-area {
+        width: 100%;
+      }
+      
+      .preview {
+        height: 500px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .preview {
+        height: 400px;
+      }
+      
+      .quiz-option {
+        padding: 10px;
+        font-size: 14px;
+      }
+      
+      #finalDownloadButton {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+      
+      .button {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+      
+      .preview {
+        height: 350px;
+      }
+      
+      .guest-list {
+        height: 300px;
+      }
+      
+      .quiz-question h3 {
+        font-size: 16px;
+      }
+      
+      .quiz-option {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      
+      .popup-image {
+        max-width: 200px;
+        max-height: 200px;
+      }
+      
+      #finalDownloadButton {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+    }
+    
+    /* Fix dla problemów z wyświetlaniem na urządzeniach o niższej rozdzielczości */
+    .popup-image.show {
+      display: block;
+      animation: pulse 1s;
+      position: fixed; /* Zapewnia, że zdjęcie będzie zawsze widoczne */
+      top: 50%; /* Wyśrodkowanie pionowe */
+      left: 50%; /* Wyśrodkowanie poziome */
+      transform: translate(-50%, -50%); /* Dokładne wyśrodkowanie */
+      z-index: 9999; /* Upewnia się, że obraz jest na wierzchu */
+    }
+    
+    /* Dodatkowe animacje i efekty dla lepszego doświadczenia mobilnego */
+    .quiz-option.selected {
+      background-color: #efe5fd;
+      border-color: #6c5b7b;
+      font-weight: bold;
+    }
+    
+    .quiz-option:active {
+      transform: scale(0.98);
+    }
+    
+    #finalDownloadButton:active {
+      transform: scale(0.95);
+    }
+    
+    .quiz-header {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .back-button {
+      background-color: #5a6268;
+    }
+    
+    .back-button:hover {
+      background-color: #4a5258;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Generator Zaproszeń Ślubnych</h1>
-    
-    <div>
-      <p>Kliknij na gościa z listy, aby wygenerować zaproszenie. Następnie zapisz stronę jako PDF (użyj Ctrl+P i wybierz opcję "Zapisz jako PDF").</p>
-      <button class="button" id="printButton">Drukuj aktualne zaproszenie</button>
+  <h1>Generator Zaproszeń Ślubnych</h1>
+  
+  <div class="main-container">
+    <div class="sidebar">
+      <div class="controls">
+        <button class="button" id="downloadButton">Pobierz wszystkie zaproszenia</button>
+      </div>
+      
+      <input type="text" id="searchBox" class="search-box" placeholder="Szukaj gościa...">
+      
+      <div class="guest-list" id="guestList">
+        <!-- Lista gości będzie wygenerowana przez JavaScript -->
+      </div>
+      
+      <div class="status" id="status">
+        Wybierz gościa z listy, aby wygenerować zaproszenie.
+      </div>
+      
+      <!-- Quiz o najlepszym szwagrze -->
+      <div class="quiz-container" id="quizContainer" style="display: none;">
+        <div class="quiz-header">
+          <button class="button back-button" id="backToListButton">Wróć do wszystkich zaproszeń</button>
+        </div>
+        
+        <div class="quiz-question">
+          <h3>1. Kto jest najlepszym szwagrem na całym świecie?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="true">A - Dawid Stelmach</button>
+            <button class="quiz-option" data-correct="false">B - Brad Pitt</button>
+            <button class="quiz-option" data-correct="false">C - Jakiś inny typek</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>2. Jeśli Dawid Stelmach byłby zwierzęciem, to byłby:</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Leniwcem, bo ciągle odpoczywa</button>
+            <button class="quiz-option" data-correct="true">B - Lwem, królem zwierząt</button>
+            <button class="quiz-option" data-correct="false">C - Orłem, bo zawsze patrzy z góry</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>3. Co Dawid Stelmach robi najlepiej?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Śpi do południa</button>
+            <button class="quiz-option" data-correct="false">B - Opowiada kiepskie dowcipy</button>
+            <button class="quiz-option" data-correct="true">C - Wszystko! Jest w tym absolutnym mistrzem</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>4. Jaki superbohater najbardziej przypomina Dawida Stelmacha?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="true">A - Superman, bo ma nadludzkie umiejętności</button>
+            <button class="quiz-option" data-correct="false">B - Batman, bo ciągle gdzieś znika</button>
+            <button class="quiz-option" data-correct="false">C - Iron Man, bo lubi błyszczeć</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>5. Gdyby Dawid Stelmach miał supermoc, to byłaby to:</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Umiejętność zasypiania na zawołanie w każdej sytuacji</button>
+            <button class="quiz-option" data-correct="true">B - Rozwiązywanie wszystkich problemów jednym spojrzeniem</button>
+            <button class="quiz-option" data-correct="false">C - Magiczna zdolność znikania, gdy trzeba zmywać naczynia</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>6. Dokończ zdanie: Dawid Stelmach jest tak przystojny, że...</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Jego żona czasem się na niego patrzy</button>
+            <button class="quiz-option" data-correct="false">B - Może ujść w tłumie niezauważony</button>
+            <button class="quiz-option" data-correct="true">C - Słońce prosi go o autograf</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>7. Jakby Dawid Stelmach był daniem, to byłby:</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Zimnym kebabem z wczoraj</button>
+            <button class="quiz-option" data-correct="false">B - Zwykłym kotletem schabowym</button>
+            <button class="quiz-option" data-correct="true">C - Wykwintnym daniem z gwiazdką Michelin</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>8. Największym talentem Dawida Stelmacha jest:</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Umiejętność spania podczas ważnych rozmów</button>
+            <button class="quiz-option" data-correct="true">B - Bycie najlepszym we wszystkim czego się dotknie</button>
+            <button class="quiz-option" data-correct="false">C - Opowiadanie tych samych historii milion razy</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>9. Co by się stało, gdyby Dawid Stelmach został prezydentem Polski?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">A - Nic, zaspałby na zaprzysiężenie</button>
+            <button class="quiz-option" data-correct="false">B - Wprowadziłby obowiązkowe leżakowanie zamiast pracy</button>
+            <button class="quiz-option" data-correct="true">C - Polska stałaby się supermocarstwem w ciągu tygodnia</button>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="display: none;">
+          <h3>10. Czy jesteś absolutnie pewien/pewna, że Dawid Stelmach jest najwspanialszym szwagrem wszech czasów?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="true">A - Tak, jestem tego pewien jak niczego innego w życiu</button>
+            <button class="quiz-option" data-correct="true">B - Oczywiście, to niepodważalny fakt naukowy</button>
+            <button class="quiz-option" data-correct="true">C - Absolutnie! Dawid to legenda wśród szwagrów</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="download-container" id="downloadContainer" style="display: none;">
+        <h3>Dziękujemy! Teraz możesz pobrać wszystkie zaproszenia</h3>
+        <a href="#" class="button" id="finalDownloadButton">Pobierz folder z zaproszeniami</a>
+        <div style="margin-top: 15px;">
+          <button class="button back-button" id="backFromDownloadButton">Wróć do wszystkich zaproszeń</button>
+        </div>
+      </div>
     </div>
     
-    <div class="guest-list" id="guestList">
-      <!-- Lista gości będzie wygenerowana przez JavaScript -->
+    <div class="content-area" id="contentArea">
+      <iframe id="previewFrame" class="preview"></iframe>
+      <img id="popupImage" class="popup-image" src="" alt="Efekt wizualny">
     </div>
-    
-    <div class="status" id="status">
-      Wybierz gościa z listy, aby wygenerować zaproszenie.
-    </div>
-    
-    <iframe id="previewFrame" class="preview"></iframe>
   </div>
   
-  <div id="printArea" style="display:none;"></div>
+  <!-- Dźwięki -->
+  <audio id="sound1" src="dzwieki/065392_long-wet-fart-54798.mp3" preload="auto"></audio>
+  <audio id="sound2" src="dzwieki/wet-fart-2-42358.mp3" preload="auto"></audio>
+  <audio id="sound3" src="dzwieki/wet-fart-6139.mp3" preload="auto"></audio>
+  <audio id="sound4" src="dzwieki/wet-fart-42422.mp3" preload="auto"></audio>
   
   <script>
     // Lista gości
@@ -155,6 +531,56 @@
       "Łukasza Pszczółkę"
     ];
     
+    // Ścieżki do obrazków - możesz podmienić na własne
+    const images = [
+      "https://aaaas.b-cdn.net/pupcia.jpg"
+    ];
+    
+    // Pobranie elementów audio
+    const sounds = [
+      document.getElementById('sound1'),
+      document.getElementById('sound2'),
+      document.getElementById('sound3'),
+      document.getElementById('sound4')
+    ];
+    
+    // Status wyciszenia
+    let muted = false;
+    
+    // Zmienne do śledzenia aktualnego dźwięku
+    let currentSound = null;
+    let lastSoundIndex = -1;
+    let soundsQueue = [0, 1, 2, 3]; // kolejka indeksów dźwięków
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    // Śledzimy pozycję myszy
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    
+    // Inicjalizacja AudioContext
+    let audioCtx;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContextClass();
+      
+      // Dodajemy obsługę zdarzeń po interakcji użytkownika
+      document.addEventListener('click', function() {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      });
+      
+      // Przygotuj dźwięki
+      sounds.forEach(sound => {
+        sound.load();
+      });
+    } catch (e) {
+      console.error("Przeglądarka nie obsługuje Web Audio API:", e);
+    }
+    
     // Pobranie HTMLa szablonu zaproszenia
     const invitationTemplate = `
 <!DOCTYPE html>
@@ -200,6 +626,7 @@
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       background-color: #fff;
+      margin: 0 auto;
     }
 
     .invitation {
@@ -385,7 +812,7 @@
 
       .invitation-wrapper {
         box-shadow: none;
-        margin: 0;
+        margin: 0 auto;
         width: 105mm;
         height: 148mm;
         page-break-after: avoid;
@@ -428,7 +855,7 @@
         </div>
 
         <div class="date-details">
-          <span>PAŹDZIERNIK</span>
+          <span>PAŹDZIERNIKA</span>
           <span>2025</span>
           <span>GODZ. 13:00</span>
         </div>
@@ -453,7 +880,7 @@
           ul. Myśliwska 1, 43-370 Szczyrk
         </div>
 
-        </div>
+        
       </div>
     </div>
   </div>
@@ -482,80 +909,289 @@
         .replace(/\s+/g, '_');
     }
     
+    // Funkcja do losowego umieszczania zdjęcia
+    function showRandomImage() {
+      const popupImage = document.getElementById('popupImage');
+      
+      // Wybierz losowy obraz
+      const randomImageIndex = Math.floor(Math.random() * images.length);
+      popupImage.src = images[randomImageIndex];
+      
+      // Pobierz wymiary okna przeglądarki
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Ustaw maksymalne wymiary obrazka
+      const imgMaxWidth = 250;
+      const imgMaxHeight = 250;
+      
+      // Wyśrodkuj zdjęcie na pozycji kursora
+      const posX = Math.max(20, Math.min(windowWidth - imgMaxWidth - 20, mouseX - imgMaxWidth/2));
+      const posY = Math.max(20, Math.min(windowHeight - imgMaxHeight - 20, mouseY - imgMaxHeight/2));
+      
+      // Losowa rotacja
+      const rotation = Math.floor(Math.random() * 20) - 10; // Od -10 do 10 stopni
+      
+      // Zastosuj styl
+      popupImage.style.left = posX + 'px';
+      popupImage.style.top = posY + 'px';
+      popupImage.style.transform = `rotate(${rotation}deg)`;
+      
+      // Pokaż zdjęcie
+      popupImage.classList.add('show');
+      
+      // Wybierz losowy dźwięk i odtwórz
+      if (!muted) {
+        // Ścieżki do plików dźwiękowych
+        const soundPaths = [
+          "dzwieki/065392_long-wet-fart-54798.mp3",
+          "dzwieki/wet-fart-2-42358.mp3",
+          "dzwieki/wet-fart-6139.mp3",
+          "dzwieki/wet-fart-42422.mp3"
+        ];
+        
+        // Zatrzymaj aktualnie odtwarzany dźwięk jeśli istnieje
+        if (currentSound) {
+          currentSound.pause();
+          currentSound = null;
+        }
+        
+        // Używamy zamiast losowania kolejki dźwięków
+        // Pobieramy następny indeks z kolejki i ustawiamy go na koniec
+        if (soundsQueue.length === 0) {
+          // Jeśli kolejka jest pusta, zresetuj ją
+          soundsQueue = [0, 1, 2, 3];
+          // Mieszamy kolejkę aby nie było widocznego powtarzalnego wzorca
+          shuffleArray(soundsQueue);
+        }
+        
+        // Pobierz następny indeks z kolejki
+        const nextSoundIndex = soundsQueue.shift();
+        
+        console.log("Używam dźwięku o indeksie:", nextSoundIndex);
+        const soundPath = soundPaths[nextSoundIndex];
+        
+        // Utwórz nowy obiekt audio
+        const sound = new Audio(soundPath);
+        currentSound = sound;
+        
+        // Odtwórz dźwięk
+        console.log("Próba odtworzenia dźwięku:", soundPath);
+        sound.play()
+          .then(() => console.log("Dźwięk odtworzony pomyślnie!"))
+          .catch(error => console.error("Błąd podczas odtwarzania dźwięku:", error));
+        
+        // Dodajemy obsługę zakończenia dźwięku, aby ukryć zdjęcie
+        sound.onended = function() {
+          popupImage.classList.remove('show');
+          currentSound = null;
+          console.log("Dźwięk zakończony, ukrywam zdjęcie");
+        };
+      } else {
+        // Jeśli wyciszone, ukryj zdjęcie po 3 sekundach
+        setTimeout(() => {
+          popupImage.classList.remove('show');
+        }, 3000);
+      }
+    }
+    
+    // Funkcja do mieszania tablicy (algorytm Fisher-Yates)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    
     // Wygeneruj listę gości
     const guestListElement = document.getElementById('guestList');
-    guestList.forEach((guest, index) => {
-      const guestItem = document.createElement('div');
-      guestItem.className = 'guest-item';
-      guestItem.textContent = guest;
-      guestItem.setAttribute('data-index', index);
+    const searchBox = document.getElementById('searchBox');
+    
+    function renderGuestList(filteredList = guestList) {
+      // Wyczyść listę
+      guestListElement.innerHTML = '';
       
-      guestItem.addEventListener('click', function() {
-        // Usuń zaznaczenie z poprzednio wybranego gościa
-        const selectedItems = document.querySelectorAll('.guest-item.selected');
-        selectedItems.forEach(item => item.classList.remove('selected'));
+      // Dodaj gości do listy
+      filteredList.forEach((guest, index) => {
+        const guestItem = document.createElement('div');
+        guestItem.className = 'guest-item';
+        guestItem.textContent = guest;
+        guestItem.setAttribute('data-index', index);
         
-        // Zaznacz klikniętego gościa
-        this.classList.add('selected');
+        guestItem.addEventListener('click', function() {
+          // Usuń zaznaczenie z poprzednio wybranego gościa
+          const selectedItems = document.querySelectorAll('.guest-item.selected');
+          selectedItems.forEach(item => item.classList.remove('selected'));
+          
+          // Zaznacz klikniętego gościa
+          this.classList.add('selected');
+          
+          // Wygeneruj zaproszenie
+          const guestName = this.textContent;
+          const invitation = generateInvitation(guestName);
+          
+          // Wyświetl w iframe
+          const previewFrame = document.getElementById('previewFrame');
+          previewFrame.srcdoc = invitation;
+          
+          // Aktualizuj status
+          document.getElementById('status').textContent = `Wygenerowano zaproszenie dla: ${guestName}`;
+          
+          // Pokaż losowe zdjęcie i odtwórz dźwięk
+          showRandomImage();
+        });
         
-        // Wygeneruj zaproszenie
-        const guestName = this.textContent;
-        const invitation = generateInvitation(guestName);
-        
-        // Wyświetl w iframe
-        const previewFrame = document.getElementById('previewFrame');
-        previewFrame.srcdoc = invitation;
-        
-        // Zapisz do drukowania
-        const printArea = document.getElementById('printArea');
-        printArea.innerHTML = invitation;
-        
-        // Aktualizuj status
-        document.getElementById('status').textContent = `Wygenerowano zaproszenie dla: ${guestName}`;
-        
-        // Aktualizuj tytuł przycisku drukowania
-        document.getElementById('printButton').textContent = `Drukuj zaproszenie dla: ${guestName}`;
+        guestListElement.appendChild(guestItem);
       });
-      
-      guestListElement.appendChild(guestItem);
+    }
+    
+    // Filtrowanie listy gości
+    searchBox.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredList = guestList.filter(guest => 
+        guest.toLowerCase().includes(searchTerm)
+      );
+      renderGuestList(filteredList);
     });
     
-    // Obsługa przycisku drukowania
-    document.getElementById('printButton').addEventListener('click', function() {
-      const selectedItem = document.querySelector('.guest-item.selected');
-      
-      if (selectedItem) {
-        const guestName = selectedItem.textContent;
-        const cleanName = cleanFileName(guestName);
-        
-        // Ustaw nazwę pliku PDF
-        const styleElement = document.createElement('style');
-        styleElement.textContent = `
-          @media print {
-            @page {
-              size: 105mm 148mm;
-              margin: 0;
-            }
-          }
-        `;
-        document.head.appendChild(styleElement);
-        
-        // Wydrukuj tylko iframe
-        const printFrame = document.getElementById('previewFrame');
-        printFrame.focus();
-        printFrame.contentWindow.print();
-      } else {
-        alert('Najpierw wybierz gościa z listy!');
-      }
-    });
+    // Inicjalizuj listę gości
+    renderGuestList();
     
     // Automatycznie wybierz pierwszego gościa
     if (guestList.length > 0) {
-      const firstGuestItem = document.querySelector('.guest-item');
-      if (firstGuestItem) {
-        firstGuestItem.click();
-      }
+      setTimeout(() => {
+        const firstGuestItem = document.querySelector('.guest-item');
+        if (firstGuestItem) {
+          firstGuestItem.click();
+        }
+      }, 500);
     }
+    
+    // Dodajemy kod do wymuszenia inicjalizacji dźwięków
+    window.addEventListener('load', function() {
+      // Funkcja do inicjalizacji dźwięków
+      function initSounds() {
+        sounds.forEach(sound => {
+          // Ustawiamy głośność na 0 i próbujemy odtworzyć, aby zainicjalizować
+          sound.volume = 0;
+          sound.play().then(() => {
+            // Od razu zatrzymujemy dźwięk
+            sound.pause();
+            sound.currentTime = 0;
+            // Przywracamy głośność
+            sound.volume = 1;
+            console.log('Dźwięk zainicjalizowany:', sound.src);
+          }).catch(e => {
+            console.log('Nie można zainicjalizować dźwięku, spróbuj kliknąć na stronie:', e);
+          });
+        });
+      }
+      
+      // Próbujemy zainicjalizować dźwięki po załadowaniu
+      setTimeout(initSounds, 1000);
+      
+      // Dodajemy nasłuchiwanie kliknięcia na całej stronie, aby zainicjalizować dźwięki
+      document.addEventListener('click', function initOnClick() {
+        initSounds();
+        // Usuwamy nasłuchiwanie po pierwszym kliknięciu
+        document.removeEventListener('click', initOnClick);
+      });
+    });
+    
+    // Dodajemy obsługę quizu i pobierania
+    document.getElementById('downloadButton').addEventListener('click', function() {
+      // Ukryj listę gości i pokaż quiz
+      document.getElementById('guestList').style.display = 'none';
+      document.getElementById('searchBox').style.display = 'none';
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('status').textContent = 'Odpowiedz poprawnie na pytania, aby pobrać zaproszenia.';
+      
+      // Resetuj quiz
+      const quizQuestions = document.querySelectorAll('.quiz-question');
+      quizQuestions.forEach((q, i) => {
+        q.style.display = i === 0 ? 'block' : 'none';
+      });
+      let currentQuestion = 0;
+    });
+    
+    // Dodajemy obsługę odpowiedzi w quizie
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+    let currentQuestion = 0;
+    
+    // Dla każdego pytania dodajemy obsługę opcji
+    quizQuestions.forEach((question, questionIndex) => {
+      const options = question.querySelectorAll('.quiz-option');
+      
+      options.forEach(option => {
+        option.addEventListener('click', function() {
+          // Sprawdź, czy odpowiedź jest poprawna
+          const isCorrect = this.getAttribute('data-correct') === 'true';
+          
+          if (isCorrect || questionIndex === 9) { // Na ostatnim pytaniu wszystkie odpowiedzi są poprawne
+            // Poprawna odpowiedź!
+            // Ukryj aktualne pytanie
+            quizQuestions[currentQuestion].style.display = 'none';
+            
+            // Przejdź do następnego pytania lub pokaż ekran pobierania
+            currentQuestion++;
+            
+            if (currentQuestion < quizQuestions.length) {
+              // Pokaż następne pytanie
+              quizQuestions[currentQuestion].style.display = 'block';
+            } else {
+              // To było ostatnie pytanie, pokaż ekran pobierania
+              document.getElementById('quizContainer').style.display = 'none';
+              document.getElementById('downloadContainer').style.display = 'block';
+              document.getElementById('status').textContent = 'Quiz ukończony! Możesz pobrać zaproszenia.';
+            }
+          } else {
+            // Niepoprawna odpowiedź!
+            alert('Niepoprawna odpowiedź! Dawid Stelmach jest znacznie wspanialszy niż myślisz!');
+          }
+        });
+      });
+    });
+    
+    // Obsługa przycisku końcowego pobierania
+    document.getElementById('finalDownloadButton').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Przekierowanie do folderu Google Drive z zaproszeniami
+      window.open('https://drive.google.com/drive/folders/1oADQoCfWjJzE7C5mThPZydfv4WcxiMDD?usp=sharing', '_blank');
+    });
+    
+    // Obsługa przycisku powrotu z ekranu pobierania
+    document.getElementById('backFromDownloadButton').addEventListener('click', function() {
+      // Ukryj ekran pobierania
+      document.getElementById('downloadContainer').style.display = 'none';
+      
+      // Pokaż listę gości i pole wyszukiwania
+      document.getElementById('guestList').style.display = 'block';
+      document.getElementById('searchBox').style.display = 'block';
+      
+      // Resetuj status
+      document.getElementById('status').textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
+      
+      // Zresetuj quiz
+      currentQuestion = 0;
+      quizQuestions.forEach((q, i) => {
+        q.style.display = i === 0 ? 'block' : 'none';
+      });
+    });
+    
+    // Obsługa przycisku powrotu do listy zaproszeń
+    document.getElementById('backToListButton').addEventListener('click', function() {
+      // Ukryj quiz
+      document.getElementById('quizContainer').style.display = 'none';
+      
+      // Pokaż listę gości i pole wyszukiwania
+      document.getElementById('guestList').style.display = 'block';
+      document.getElementById('searchBox').style.display = 'block';
+      
+      // Resetuj status
+      document.getElementById('status').textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
+    });
   </script>
 </body>
 </html> 
