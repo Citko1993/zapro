@@ -1,7 +1,3 @@
-Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
-
-```html
-<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -9,11 +5,9 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
   <meta name="description" content="Generator zaproszeń ślubnych - stwórz eleganckie zaproszenia na swój wyjątkowy dzień">
   <meta name="theme-color" content="#6c5b7b">
   <title>Zaproszenia Ślubne | Generator</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --primary: #6c5b7b;
@@ -22,9 +16,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       --secondary: #c79c59;
       --secondary-light: #e3b870;
       --secondary-dark: #a87f40;
-      --accent-1: #5d9e9b;
-      --accent-2: #b46c77;
-      --accent-3: #84a07c;
       --neutral-100: #ffffff;
       --neutral-200: #f8f9fa;
       --neutral-300: #e9ecef;
@@ -245,83 +236,9 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       color: var(--neutral-500);
     }
 
-    /* Kategorie gości - nowy segment */
-    .guest-categories {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-      flex-wrap: wrap;
-    }
-
-    .category-btn {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid var(--neutral-300);
-      background: var(--neutral-100);
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
-      min-width: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .category-btn.active {
-      background-color: var(--primary-light);
-      color: var(--neutral-100);
-      border-color: var(--primary);
-    }
-
-    .category-btn:hover:not(.active) {
-      background-color: var(--neutral-200);
-    }
-
-    .category-indicator {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .category-indicator.all {
-      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-1) 33%, var(--accent-2) 33%, var(--accent-2) 66%, var(--accent-3) 66%, var(--accent-3) 100%);
-    }
-
-    .category-indicator.rodzina-panny {
-      background-color: var(--accent-1);
-    }
-
-    .category-indicator.rodzina-pana {
-      background-color: var(--accent-2);
-    }
-
-    .category-indicator.znajomi {
-      background-color: var(--accent-3);
-    }
-
-    .category-counter {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      padding: 2px 6px;
-      font-size: 0.75rem;
-      min-width: 20px;
-      text-align: center;
-    }
-
-    .guest-list-container {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
     .guest-list {
       flex: 1;
+      margin: var(--spacing-md) 0;
       overflow-y: auto;
       border: 1px solid var(--neutral-300);
       border-radius: var(--radius-sm);
@@ -373,19 +290,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       height: 8px;
       border-radius: 50%;
       background-color: var(--primary);
-    }
-
-    /* Category indicators */
-    .guest-item.rodzina-panny {
-      border-left: 3px solid var(--accent-1);
-    }
-
-    .guest-item.rodzina-pana {
-      border-left: 3px solid var(--accent-2);
-    }
-
-    .guest-item.znajomi {
-      border-left: 3px solid var(--accent-3);
     }
 
     .status-bar {
@@ -443,42 +347,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       margin-bottom: var(--spacing-md);
     }
 
-    /* Excel-like status bar */
-    .excel-status-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--spacing-sm) var(--spacing-lg);
-      background-color: var(--neutral-200);
-      border-top: 1px solid var(--neutral-300);
-      font-size: 0.85rem;
-      color: var(--neutral-700);
-    }
-
-    .excel-status-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .excel-status-right {
-      display: flex;
-      align-items: center;
-    }
-
-    .status-item {
-      margin-right: var(--spacing-md);
-      display: flex;
-      align-items: center;
-    }
-
-    .status-item:last-child {
-      margin-right: 0;
-    }
-
-    .status-icon {
-      margin-right: var(--spacing-xs);
-    }
-
     /* Quiz Styles */
     .quiz-container {
       padding: var(--spacing-lg);
@@ -486,9 +354,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
       animation: fadeIn 0.5s ease;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
     }
 
     @keyframes fadeIn {
@@ -612,10 +477,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       background-color: rgba(61, 143, 110, 0.05);
       border-radius: var(--radius-md);
       animation: fadeInUp 0.8s ease;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     @keyframes fadeInUp {
@@ -644,73 +505,86 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       margin: 0 auto;
     }
 
-    /* Sound toggle */
-    .sound-toggle {
-      position: absolute;
-      top: var(--spacing-md);
-      right: var(--spacing-md);
-      z-index: 100;
-      background: var(--neutral-200);
-      border: 1px solid var(--neutral-300);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .sound-toggle:hover {
-      background: var(--neutral-300);
-    }
-
-    .sound-toggle svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--neutral-700);
-    }
-
-    /* Tooltip */
-    .tooltip {
-      position: relative;
-      display: inline-block;
-    }
-
-    .tooltip .tooltip-text {
-      visibility: hidden;
-      width: 120px;
-      background-color: var(--neutral-800);
-      color: var(--neutral-100);
-      text-align: center;
-      border-radius: var(--radius-sm);
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
       opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 0.8rem;
-      pointer-events: none;
+      visibility: hidden;
+      transition: all 0.3s ease;
     }
 
-    .tooltip .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: var(--neutral-800) transparent transparent transparent;
-    }
-
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
+    .modal-backdrop.show {
       opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background-color: var(--neutral-100);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-backdrop.show .modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid var(--neutral-300);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--neutral-600);
+    }
+
+    .modal-body {
+      padding: var(--spacing-lg);
+    }
+
+    .modal-footer {
+      padding: var(--spacing-lg);
+      border-top: 1px solid var(--neutral-300);
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--spacing-md);
+    }
+
+    /* Special animations */
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
 
     /* Responsive */
@@ -753,15 +627,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
       .quiz-question h3 {
         font-size: 1.1rem;
       }
-
-      .category-btn {
-        font-size: 0.85rem;
-        padding: 8px 6px;
-      }
-
-      .category-counter {
-        display: none;
-      }
     }
 
     @media (max-width: 576px) {
@@ -786,16 +651,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
         width: 20px;
         height: 20px;
         font-size: 0.75rem;
-      }
-
-      .guest-categories {
-        flex-wrap: wrap;
-      }
-
-      .category-btn {
-        flex: 1 0 calc(50% - var(--spacing-sm));
-        font-size: 0.8rem;
-        padding: 8px 4px;
       }
     }
 
@@ -874,7 +729,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
 </head>
 <body>
   <h1>Generator Zaproszeń Ślubnych</h1>
-  
   <div class="container">
     <div class="main-container">
       <div class="sidebar">
@@ -889,297 +743,230 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
             Pobierz wszystkie zaproszenia
           </button>
         </div>
-        
-        <div class="input-group">
-          <span class="input-icon">
+<div class="input-group">
+      <span class="input-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </span>
+      <input type="text" id="searchBox" class="search-box" placeholder="Wyszukaj gościa..." aria-label="Wyszukaj gościa">
+    </div>
+    
+    <div class="guest-list" id="guestList">
+      <!-- Lista gości będzie wygenerowana przez JavaScript -->
+    </div>
+    
+    <div class="status-bar" id="status">
+      Wybierz gościa z listy, aby wygenerować zaproszenie.
+    </div>
+    
+    <!-- Quiz o najlepszym szwagrze -->
+    <div class="quiz-container" id="quizContainer" style="display: none;">
+      <div class="quiz-header">
+        <h2 class="quiz-title">Quiz o Szwagrze</h2>
+        <button class="btn btn-secondary" id="backToListButton">
+          <span class="btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
           </span>
-          <input type="text" id="searchBox" class="search-box" placeholder="Wyszukaj gościa..." aria-label="Wyszukaj gościa">
-        </div>
-        
-        <!-- Kategorie gości - nowy segment -->
-        <div class="guest-categories" id="guestCategories">
-          <button class="category-btn active" data-category="all">
-            <span class="category-indicator all"></span>
-            Wszyscy
-            <span class="category-counter" id="counterAll">40</span>
-          </button>
-          <button class="category-btn" data-category="rodzina-panny">
-            <span class="category-indicator rodzina-panny"></span>
-            Rodzina Panny
-            <span class="category-counter" id="counterRodzinaPanny">11</span>
-          </button>
-          <button class="category-btn" data-category="rodzina-pana">
-            <span class="category-indicator rodzina-pana"></span>
-            Rodzina Pana
-            <span class="category-counter" id="counterRodzinaPana">9</span>
-          </button>
-          <button class="category-btn" data-category="znajomi">
-            <span class="category-indicator znajomi"></span>
-            Znajomi
-            <span class="category-counter" id="counterZnajomi">20</span>
-          </button>
-        </div>
-        
-        <div class="guest-list-container">
-          <div class="guest-list" id="guestList">
-            <!-- Lista gości będzie wygenerowana przez JavaScript -->
-          </div>
-          
-                   <div class="status-bar" id="status">
-            Wybierz gościa z listy, aby wygenerować zaproszenie.
-          </div>
-        </div>
-        
-        <!-- Quiz o najlepszym szwagrze -->
-        <div class="quiz-container" id="quizContainer" style="display: none;">
-          <div class="quiz-header">
-            <h2 class="quiz-title">Quiz o Szwagrze</h2>
-            <button class="btn btn-secondary" id="backToListButton">
-              <span class="btn-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-              </span>
-              Wróć do zaproszeń
-            </button>
-          </div>
-          
-          <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="quizProgress" style="width: 10%"></div>
-          </div>
-          
-          <div class="quiz-question">
-            <h3>1. Kto jest najlepszym szwagrem na całym świecie?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="true">Dawid Stelmach</button>
-              <button class="quiz-option" data-correct="false">Brad Pitt</button>
-              <button class="quiz-option" data-correct="false">Jakiś inny typek</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>2. Jeśli Dawid Stelmach byłby zwierzęciem, to byłby:</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Leniwcem, bo ciągle odpoczywa</button>
-              <button class="quiz-option" data-correct="true">Lwem, królem zwierząt</button>
-              <button class="quiz-option" data-correct="false">Orłem, bo zawsze patrzy z góry</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>3. Co Dawid Stelmach robi najlepiej?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Śpi do południa</button>
-              <button class="quiz-option" data-correct="false">Opowiada kiepskie dowcipy</button>
-              <button class="quiz-option" data-correct="true">Wszystko! Jest w tym absolutnym mistrzem</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>4. Jaki superbohater najbardziej przypomina Dawida Stelmacha?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="true">Superman, bo ma nadludzkie umiejętności</button>
-              <button class="quiz-option" data-correct="false">Batman, bo ciągle gdzieś znika</button>
-              <button class="quiz-option" data-correct="false">Iron Man, bo lubi błyszczeć</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>5. Gdyby Dawid Stelmach miał supermoc, to byłaby to:</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Umiejętność zasypiania na zawołanie w każdej sytuacji</button>
-              <button class="quiz-option" data-correct="true">Rozwiązywanie wszystkich problemów jednym spojrzeniem</button>
-              <button class="quiz-option" data-correct="false">Magiczna zdolność znikania, gdy trzeba zmywać naczynia</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>6. Dokończ zdanie: Dawid Stelmach jest tak przystojny, że...</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Jego żona czasem się na niego patrzy</button>
-              <button class="quiz-option" data-correct="false">Może ujść w tłumie niezauważony</button>
-              <button class="quiz-option" data-correct="true">Słońce prosi go o autograf</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>7. Jakby Dawid Stelmach był daniem, to byłby:</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Zimnym kebabem z wczoraj</button>
-              <button class="quiz-option" data-correct="false">Zwykłym kotletem schabowym</button>
-              <button class="quiz-option" data-correct="true">Wykwintnym daniem z gwiazdką Michelin</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>8. Największym talentem Dawida Stelmacha jest:</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Umiejętność spania podczas ważnych rozmów</button>
-              <button class="quiz-option" data-correct="true">Bycie najlepszym we wszystkim czego się dotknie</button>
-              <button class="quiz-option" data-correct="false">Opowiadanie tych samych historii milion razy</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>9. Co by się stało, gdyby Dawid Stelmach został prezydentem Polski?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">Nic, zaspałby na zaprzysiężenie</button>
-              <button class="quiz-option" data-correct="false">Wprowadziłby obowiązkowe leżakowanie zamiast pracy</button>
-              <button class="quiz-option" data-correct="true">Polska stałaby się supermocarstwem w ciągu tygodnia</button>
-            </div>
-          </div>
-          
-          <div class="quiz-question" style="display: none;">
-            <h3>10. Czy jesteś absolutnie pewien/pewna, że Dawid Stelmach jest najwspanialszym szwagrem wszech czasów?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="true">Tak, jestem tego pewien jak niczego innego w życiu</button>
-              <button class="quiz-option" data-correct="true">Oczywiście, to niepodważalny fakt naukowy</button>
-              <button class="quiz-option" data-correct="true">Absolutnie! Dawid to legenda wśród szwagrów</button>
-            </div>
-          </div>
-          
-          <div class="quiz-footer">
-            <div id="quizScoreContainer" style="display: none;">
-              <span>Twój wynik: <strong id="quizScore">0/10</strong></span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="download-container" id="downloadContainer" style="display: none;">
-          <div class="download-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-            </svg>
-          </div>
-          
-          <h3 class="download-heading">Dziękujemy za rozwiązanie quizu!</h3>
-          <p>Teraz możesz pobrać wszystkie zaproszenia w jednym pliku.</p>
-          
-          <div class="download-actions">
-            <a href="#" class="btn btn-success btn-lg btn-block" id="finalDownloadButton">
-              <span class="btn-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                </svg>
-              </span>
-              Pobierz folder z zaproszeniami
-            </a>
-            <button class="btn btn-secondary" id="backFromDownloadButton">
-              <span class="btn-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-              </span>
-              Wróć do wszystkich zaproszeń
-            </button>
-          </div>
+          Wróć do zaproszeń
+        </button>
+      </div>
+      
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quizProgress" style="width: 10%"></div>
+      </div>
+      
+      <div class="quiz-question">
+        <h3>1. Kto jest najlepszym szwagrem na całym świecie?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true">Dawid Stelmach</button>
+          <button class="quiz-option" data-correct="false">Brad Pitt</button>
+          <button class="quiz-option" data-correct="false">Jakiś inny typek</button>
         </div>
       </div>
       
-      <div class="content-area" id="contentArea">
-        <div class="sound-toggle tooltip" id="soundToggle">
-          <span class="tooltip-text" id="soundTooltipText">Wycisz dźwięki</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" id="soundIcon">
-            <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-            <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-            <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
-          </svg>
+      <div class="quiz-question" style="display: none;">
+        <h3>2. Jeśli Dawid Stelmach byłby zwierzęciem, to byłby:</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Leniwcem, bo ciągle odpoczywa</button>
+          <button class="quiz-option" data-correct="true">Lwem, królem zwierząt</button>
+          <button class="quiz-option" data-correct="false">Orłem, bo zawsze patrzy z góry</button>
         </div>
-        <iframe id="previewFrame" class="preview-frame" title="Podgląd zaproszenia"></iframe>
-        <img id="popupImage" class="popup-image" src="" alt="Efekt wizualny">
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>3. Co Dawid Stelmach robi najlepiej?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Śpi do południa</button>
+          <button class="quiz-option" data-correct="false">Opowiada kiepskie dowcipy</button>
+          <button class="quiz-option" data-correct="true">Wszystko! Jest w tym absolutnym mistrzem</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>4. Jaki superbohater najbardziej przypomina Dawida Stelmacha?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true">Superman, bo ma nadludzkie umiejętności</button>
+          <button class="quiz-option" data-correct="false">Batman, bo ciągle gdzieś znika</button>
+          <button class="quiz-option" data-correct="false">Iron Man, bo lubi błyszczeć</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>5. Gdyby Dawid Stelmach miał supermoc, to byłaby to:</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Umiejętność zasypiania na zawołanie w każdej sytuacji</button>
+          <button class="quiz-option" data-correct="true">Rozwiązywanie wszystkich problemów jednym spojrzeniem</button>
+          <button class="quiz-option" data-correct="false">Magiczna zdolność znikania, gdy trzeba zmywać naczynia</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>6. Dokończ zdanie: Dawid Stelmach jest tak przystojny, że...</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Jego żona czasem się na niego patrzy</button>
+          <button class="quiz-option" data-correct="false">Może ujść w tłumie niezauważony</button>
+          <button class="quiz-option" data-correct="true">Słońce prosi go o autograf</button>
+        </div>
+      </div>
+      
+              <div class="quiz-question" style="display: none;">
+        <h3>7. Jakby Dawid Stelmach był daniem, to byłby:</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Zimnym kebabem z wczoraj</button>
+          <button class="quiz-option" data-correct="false">Zwykłym kotletem schabowym</button>
+          <button class="quiz-option" data-correct="true">Wykwintnym daniem z gwiazdką Michelin</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>8. Największym talentem Dawida Stelmacha jest:</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Umiejętność spania podczas ważnych rozmów</button>
+          <button class="quiz-option" data-correct="true">Bycie najlepszym we wszystkim czego się dotknie</button>
+          <button class="quiz-option" data-correct="false">Opowiadanie tych samych historii milion razy</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>9. Co by się stało, gdyby Dawid Stelmach został prezydentem Polski?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Nic, zaspałby na zaprzysiężenie</button>
+          <button class="quiz-option" data-correct="false">Wprowadziłby obowiązkowe leżakowanie zamiast pracy</button>
+          <button class="quiz-option" data-correct="true">Polska stałaby się supermocarstwem w ciągu tygodnia</button>
+        </div>
+      </div>
+      
+      <div class="quiz-question" style="display: none;">
+        <h3>10. Czy jesteś absolutnie pewien/pewna, że Dawid Stelmach jest najwspanialszym szwagrem wszech czasów?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true">Tak, jestem tego pewien jak niczego innego w życiu</button>
+          <button class="quiz-option" data-correct="true">Oczywiście, to niepodważalny fakt naukowy</button>
+          <button class="quiz-option" data-correct="true">Absolutnie! Dawid to legenda wśród szwagrów</button>
+        </div>
+      </div>
+      
+      <div class="quiz-footer">
+        <div id="quizScoreContainer" style="display: none;">
+          <span>Twój wynik: <strong id="quizScore">0/10</strong></span>
+        </div>
       </div>
     </div>
     
-    <!-- Excel-like status bar -->
-    <div class="excel-status-bar">
-      <div class="excel-status-left">
-        <div class="status-item">
-          <span class="status-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    <div class="download-container" id="downloadContainer" style="display: none;">
+      <div class="download-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      
+      <h3 class="download-heading">Dziękujemy za rozwiązanie quizu!</h3>
+      <p>Teraz możesz pobrać wszystkie zaproszenia w jednym pliku.</p>
+      
+      <div class="download-actions">
+        <a href="#" class="btn btn-success btn-lg btn-block" id="finalDownloadButton">
+          <span class="btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
             </svg>
           </span>
-          <span id="totalGuestsCounter">40 gości</span>
-        </div>
-        <div class="status-item">
-          <span id="statusSelectedGuest">Nie wybrano gościa</span>
-        </div>
-      </div>
-      <div class="excel-status-right">
-        <div class="status-item">
-          <span id="statusSound">Dźwięki: Włączone</span>
-        </div>
+          Pobierz folder z zaproszeniami
+        </a>
+        <button class="btn btn-secondary" id="backFromDownloadButton">
+          <span class="btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+          </span>
+          Wróć do wszystkich zaproszeń
+        </button>
       </div>
     </div>
   </div>
   
+  <div class="content-area" id="contentArea">
+    <iframe id="previewFrame" class="preview-frame" title="Podgląd zaproszenia"></iframe>
+    <img id="popupImage" class="popup-image" src="" alt="Efekt wizualny">
+  </div>
+</div>
+ </div>
   <!-- Dźwięki dla efektów -->
-  <audio id="sound1" src="dzwieki/065392_long-wet-fart-54798.mp3" preload="auto"></audio>
-  <audio id="sound2" src="dzwieki/wet-fart-2-42358.mp3" preload="auto"></audio>
-  <audio id="sound3" src="dzwieki/wet-fart-6139.mp3" preload="auto"></audio>
-  <audio id="sound4" src="dzwieki/wet-fart-42422.mp3" preload="auto"></audio>
-  
+<audio id="sound1" src="dzwieki/065392_long-wet-fart-54798.mp3" preload="auto"></audio>
+<audio id="sound2" src="dzwieki/wet-fart-2-42358.mp3" preload="auto"></audio>
+<audio id="sound3" src="dzwieki/wet-fart-6139.mp3" preload="auto"></audio>
+<audio id="sound4" src="dzwieki/wet-fart-42422.mp3" preload="auto"></audio>
   <script>
-    // Podział na kategorie gości
-    const guestCategories = {
-      rodzinaPanny: [
-        "Rodziców Alicję oraz Sławomira Zawada",
-        "Karolinę, Dawida oraz Izabelkę Stelmach",
-        "Babcię Franię Gawlik",
-        "Natalię oraz Aleksandra Zawadę",
-        "Ciocię Beatę wraz z Krzysztofem Milerskim oraz Sylwią Gawlik",
-        "Mateusza Gawlika oraz Gosię Krzywon",
-        "Magdę Gawlik-Wrzeszcz oraz Filipa Wrzeszcz",
-        "Jowitę Gawlik wraz z osobą towarzyszącą, Amelkę Chmiel oraz Adasia",
-        "Rodziców chrzestnych Ciocię Ewę oraz Wujka Mietka Gawlik",
-        "Anię oraz Krzyśka Staniek wraz z dziećmi",
-        "Ciocię Aurelię Kohut wraz z osobą towarzyszącą"
-      ],
-      rodzinaPana: [
-        "Rodziców Adriannę oraz Rafała wraz z Niną Dziedzic",
-        "Babcię Łucję oraz Dziadka Stanisława Dziedzic",
-        "Babcię Łucję Madzię",
-        "Weronikę oraz Wojciecha Swobodów",
-        "Łukasza oraz Magdalenę wraz z Ksawerym Madzia",
-        "Beatę oraz Piotra wraz z Martyną i Dawidem Glajc",
-        "Martę Dziedzic, Krzysztofa Orela wraz z Bartoszem",
-        "Barbarę oraz Marka Pylicę",
-        "Sylwię Krzemień-Kolasińską wraz z osobą towarzyszącą"
-      ],
-      znajomi: [
-        "Rafała Nawodyło wraz z osobą towarzyszącą",
-        "Wojciecha Foltyna wraz z osobą towarzyszącą",
-        "Szymona Huplika wraz z osobą towarzyszącą",
-        "Piotra Waliczka wraz z osobą towarzyszącą",
-        "Annę oraz Krzysztofa Macura",
-        "Krystiana Urbańskiego wraz z osobą towarzyszącą",
-        "Arkadiusza Szczypkę oraz Agnieszkę Fizek",
-        "Wiktorię Malec oraz Przemysława Tomicę",
-        "Aleksandrę oraz Eryka Sztwiertnię",
-        "Arkadiusza Strokę oraz Marcina Żaka",
-        "Victorię Ogorzelec oraz Michała Zontka",
-        "Dominikę Obracaj oraz Mateusza Kumorka",
-        "Weronikę oraz Dawida Jankowskich",
-        "Klaudię oraz Jakuba Ferfeckich",
-        "Agnieszkę Kucharską wraz z osobą towarzyszącą",
-        "Magdalenę oraz Sebastiana Wróbel",
-        "Magdalenę Grudzień wraz z osobą towarzyszącą",
-        "Adama oraz Aleksandrę Woźnicę", 
-        "Mateusza Brudnego",
-        "Łukasza Pszczółkę"
-      ]
-    };
-    
-    // Lista wszystkich gości
-    const allGuests = [
-      ...guestCategories.rodzinaPanny,
-      ...guestCategories.rodzinaPana,
-      ...guestCategories.znajomi
+    // Lista gości
+    const guestList = [
+      // Rodzina Pani Młodej
+      "Rodziców Alicję oraz Sławomira Zawada",
+      "Karolinę, Dawida oraz Izabelkę Stelmach",
+      "Babcię Franię Gawlik",
+      "Natalię oraz Aleksandra Zawadę",
+      "Ciocię Beatę wraz z Krzysztofem Milerskim oraz Sylwią Gawlik",
+      "Mateusza Gawlika oraz Gosię Krzywon",
+      "Magdę Gawlik-Wrzeszcz oraz Filipa Wrzeszcz",
+      "Jowitę Gawlik wraz z osobą towarzyszącą, Amelkę Chmiel oraz Adasia",
+      "Rodziców chrzestnych Ciocię Ewę oraz Wujka Mietka Gawlik",
+      "Anię oraz Krzyśka Staniek wraz z dziećmi",
+      "Ciocię Aurelię Kohut wraz z osobą towarzyszącą",
+      
+      // Rodzina Pana Młodego
+      "Rodziców Adriannę oraz Rafała wraz z Niną Dziedzic",
+      "Babcię Łucję oraz Dziadka Stanisława Dziedzic",
+      "Babcię Łucję Madzię",
+      "Weronikę oraz Wojciecha Swobodów",
+      "Łukasza oraz Magdalenę wraz z Ksawerym Madzia",
+      "Beatę oraz Piotra wraz z Martyną i Dawidem Glajc",
+      "Martę Dziedzic, Krzysztofa Orela wraz z Bartoszem",
+      "Barbarę oraz Marka Pylicę",
+      "Sylwię Krzemień-Kolasińską wraz z osobą towarzyszącą",
+      
+      // Znajomi
+      "Rafała Nawodyło wraz z osobą towarzyszącą",
+      "Wojciecha Foltyna wraz z osobą towarzyszącą",
+      "Szymona Huplika wraz z osobą towarzyszącą",
+      "Piotra Waliczka wraz z osobą towarzyszącą",
+      "Annę oraz Krzysztofa Macura",
+      "Krystiana Urbańskiego wraz z osobą towarzyszącą",
+      "Arkadiusza Szczypkę oraz Agnieszkę Fizek",
+      "Wiktorię Malec oraz Przemysława Tomicę",
+      "Aleksandrę oraz Eryka Sztwiertnię",
+      "Arkadiusza Strokę oraz Marcina Żaka",
+      "Victorię Ogorzelec oraz Michała Zontka",
+      "Dominikę Obracaj oraz Mateusza Kumorka",
+      "Weronikę oraz Dawida Jankowskich",
+      "Klaudię oraz Jakuba Ferfeckich",
+      "Agnieszkę Kucharską wraz z osobą towarzyszącą",
+      "Magdalenę oraz Sebastiana Wróbel",
+      "Magdalenę Grudzień wraz z osobą towarzyszącą",
+      "Adama oraz Aleksandrę Woźnicę", 
+      "Mateusza Brudnego",
+      "Łukasza Pszczółkę"
     ];
     
     // Ścieżki do obrazków
@@ -1193,7 +980,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
     const previewFrame = document.getElementById('previewFrame');
     const popupImage = document.getElementById('popupImage');
     const statusElement = document.getElementById('status');
-    const statusSelectedGuestElement = document.getElementById('statusSelectedGuest');
     const downloadButton = document.getElementById('downloadButton');
     const quizContainer = document.getElementById('quizContainer');
     const downloadContainer = document.getElementById('downloadContainer');
@@ -1201,16 +987,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
     const backFromDownloadButton = document.getElementById('backFromDownloadButton');
     const finalDownloadButton = document.getElementById('finalDownloadButton');
     const quizProgress = document.getElementById('quizProgress');
-    const soundToggle = document.getElementById('soundToggle');
-    const soundIcon = document.getElementById('soundIcon');
-    const soundTooltipText = document.getElementById('soundTooltipText');
-    const statusSound = document.getElementById('statusSound');
-    const totalGuestsCounter = document.getElementById('totalGuestsCounter');
-    const counterAll = document.getElementById('counterAll');
-    const counterRodzinaPanny = document.getElementById('counterRodzinaPanny');
-    const counterRodzinaPana = document.getElementById('counterRodzinaPana');
-    const counterZnajomi = document.getElementById('counterZnajomi');
-    const categoryBtns = document.querySelectorAll('.category-btn');
     
     // Zmienne do śledzenia aktualnego dźwięku
     let currentSound = null;
@@ -1222,8 +998,6 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
     let quizScore = 0;
     let selectedGuest = null;
     let muted = false;
-    let activeCategory = 'all';
-    let lastClickedGuest = null;
     
     // Śledzenie pozycji myszy
     document.addEventListener('mousemove', function(e) {
@@ -1473,7 +1247,8 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
         width: 105mm;
         height: 148mm;
         page-break-after: avoid;
-                page-break-inside: avoid;
+        page-break-before: avoid;
+        page-break-inside: avoid;
       }
 
       @page {
@@ -1487,498 +1262,418 @@ Oto ulepszona wersja kodu z uwzględnieniem Twoich wymagań:
   <div class="invitation-wrapper">
     <div class="invitation">
       <div class="border-frame"></div>
-
-      <div class="content">
-        <div class="monogram-container">
-          <div class="monogram-divider"></div>
-          <div class="monogram n-letter">N</div>
-          <div class="monogram k-letter">K</div>
-        </div>
-
-        <!-- ZMIENIONE DANE -->
-        <div class="names">NATALIA ZAWADA I KONRAD DZIEDZIC</div>
-
-        <div class="invite-text">
-          z radością zapraszają<br>
-          <span class="guest-name">Martę i Jacka Nowaków</span>
-          na uroczystość zaślubin,<br>
-          która odbędzie się
-        </div>
-
-        <div class="date-container">
-          <div class="date-line"></div>
-          <div class="date">9</div>
-          <div class="date-line"></div>
-        </div>
-
-        <div class="date-details">
-          <span>PAŹDZIERNIKA</span>
-          <span>2025</span>
-          <span>GODZ. 13:00</span>
-        </div>
-
-        <div class="location">
-          w Kościele św. Piotra i Pawła<br>
-          w Skoczowie
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="reception-text">
-          Po uroczystości zaślubin mamy zaszczyt zaprosić Was<br>
-          na przyjęcie weselne, które odbędzie się
-        </div>
-
-        <div class="reception-location">
-          w Winnicy Toskańskiej Romeo i Julia
-        </div>
-
-        <div class="reception-address">
-          ul. Myśliwska 1, 43-370 Szczyrk
-        </div>
-      </div>
+<div class="content">
+    <div class="monogram-container">
+      <div class="monogram-divider"></div>
+      <div class="monogram n-letter">N</div>
+      <div class="monogram k-letter">K</div>
     </div>
+
+    <!-- ZMIENIONE DANE -->
+    <div class="names">NATALIA ZAWADA I KONRAD DZIEDZIC</div>
+
+    <div class="invite-text">
+      z radością zapraszają<br>
+      <span class="guest-name">Martę i Jacka Nowaków</span>
+      na uroczystość zaślubin,<br>
+      która odbędzie się
+    </div>
+
+    <div class="date-container">
+      <div class="date-line"></div>
+      <div class="date">9</div>
+      <div class="date-line"></div>
+    </div>
+
+    <div class="date-details">
+      <span>PAŹDZIERNIKA</span>
+      <span>2025</span>
+      <span>GODZ. 13:00</span>
+    </div>
+
+    <div class="location">
+      w Kościele św. Piotra i Pawła<br>
+      w Skoczowie
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="reception-text">
+      Po uroczystości zaślubin mamy zaszczyt zaprosić Was<br>
+      na przyjęcie weselne, które odbędzie się
+    </div>
+
+    <div class="reception-location">
+      w Winnicy Toskańskiej Romeo i Julia
+    </div>
+
+    <div class="reception-address">
+      ul. Myśliwska 1, 43-370 Szczyrk
+    </div>
+  </div>
+</div>
   </div>
 </body>
 </html>
     `;
+// Inicjalizacja
+function init() {
+  // Generowanie listy gości
+  renderGuestList(guestList);
+  
+  // Obsługa wyszukiwania
+  searchBox.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const filteredGuests = guestList.filter(guest => 
+      guest.toLowerCase().includes(searchTerm)
+    );
+    renderGuestList(filteredGuests);
+  });
+  
+  // Obsługa przycisku pobierania
+  downloadButton.addEventListener('click', function() {
+    showQuiz();
+  });
+  
+  // Obsługa przycisku powrotu z quizu
+  backToListButton.addEventListener('click', function() {
+    hideQuiz();
+  });
+  
+  // Obsługa przycisku powrotu z ekranu pobierania
+  backFromDownloadButton.addEventListener('click', function() {
+    hideDownloadScreen();
+  });
+  
+  // Obsługa finalnego przycisku pobierania
+  finalDownloadButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    const timestamp = new Date().getTime();
+    // W prawdziwej aplikacji tutaj byłby kod do pobierania plików
+    alert('Pobieranie wszystkich zaproszeń rozpoczęte!');
+  });
+  
+  // Przygotowanie quizu
+  setupQuiz();
+  
+  // Efekty losowych dźwięków
+  setInterval(playRandomSound, 15000);
+}
+
+// Renderowanie listy gości
+function renderGuestList(guests) {
+  guestListElement.innerHTML = '';
+  
+  if (guests.length === 0) {
+    const noResultsItem = document.createElement('div');
+    noResultsItem.classList.add('guest-item');
+    noResultsItem.textContent = 'Brak wyników wyszukiwania';
+    guestListElement.appendChild(noResultsItem);
+    return;
+  }
+  
+  guests.forEach(guest => {
+    const guestItem = document.createElement('div');
+    guestItem.classList.add('guest-item');
+    guestItem.textContent = guest;
     
-    // Inicjalizacja
-    function init() {
-      // Ustawienie liczników
-      setCounters();
+    if (selectedGuest === guest) {
+      guestItem.classList.add('selected');
+    }
+    
+    guestItem.addEventListener('click', function() {
+      selectGuest(guest);
       
-      // Generowanie listy gości 
-      renderGuestList(allGuests);
+      // Wyczyść poprzednie zaznaczenie
+      document.querySelectorAll('.guest-item').forEach(item => {
+        item.classList.remove('selected');
+      });
       
-      // Obsługa wyszukiwania
-      searchBox.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
+      // Zaznacz aktualny element
+      this.classList.add('selected');
+    });
+    
+    guestListElement.appendChild(guestItem);
+  });
+}
+
+// Wybór gościa
+function selectGuest(guest) {
+  selectedGuest = guest;
+  updatePreview(guest);
+  statusElement.textContent = `Zaproszenie dla: ${guest}`;
+}
+
+// Aktualizacja podglądu
+function updatePreview(guest) {
+  let html = invitationTemplate.replace(
+    '<span class="guest-name">Martę i Jacka Nowaków</span>',
+    `<span class="guest-name">${guest}</span>`
+  );
+  
+  const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+  doc.open();
+  doc.write(html);
+  doc.close();
+}
+
+// Konfiguracja quizu
+function setupQuiz() {
+  const quizQuestions = document.querySelectorAll('.quiz-question');
+  
+  quizQuestions.forEach((question, index) => {
+    const options = question.querySelectorAll('.quiz-option');
+    
+    options.forEach(option => {
+      option.addEventListener('click', function() {
+        // Sprawdź odpowiedź
+        const isCorrect = this.getAttribute('data-correct') === 'true';
         
-        // Filtruj gości w zależności od aktywnej kategorii
-        let filteredGuests;
-        
-        if (activeCategory === 'all') {
-          filteredGuests = allGuests.filter(guest => 
-            guest.toLowerCase().includes(searchTerm)
-          );
-        } else if (activeCategory === 'rodzina-panny') {
-          filteredGuests = guestCategories.rodzinaPanny.filter(guest => 
-            guest.toLowerCase().includes(searchTerm)
-          );
-        } else if (activeCategory === 'rodzina-pana') {
-          filteredGuests = guestCategories.rodzinaPana.filter(guest => 
-            guest.toLowerCase().includes(searchTerm)
-          );
-        } else if (activeCategory === 'znajomi') {
-          filteredGuests = guestCategories.znajomi.filter(guest => 
-            guest.toLowerCase().includes(searchTerm)
-          );
+        // Podświetl wybraną odpowiedź
+        if (isCorrect) {
+          this.classList.add('correct');
+          quizScore++;
+        } else {
+          this.classList.add('incorrect');
+          // Podświetl poprawną odpowiedź
+          question.querySelector('[data-correct="true"]').classList.add('correct');
         }
         
-        // Aktualizuj listę gości
-        renderGuestList(filteredGuests);
-      });
-      
-      // Obsługa przycisków kategorii
-      categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          // Usuń aktywną klasę ze wszystkich przycisków
-          categoryBtns.forEach(b => b.classList.remove('active'));
+        // Wyłącz klikanie na opcje
+        options.forEach(opt => {
+          opt.style.pointerEvents = 'none';
+        });
+        
+        // Przejdź do następnego pytania po opóźnieniu
+        setTimeout(() => {
+          // Ukryj aktualne pytanie
+          question.style.display = 'none';
           
-          // Dodaj aktywną klasę do klikniętego przycisku
-          this.classList.add('active');
-          
-          // Zapisz aktywną kategorię
-          activeCategory = this.getAttribute('data-category');
-          
-          // Wyświetl odpowiednią listę gości
-          if (activeCategory === 'all') {
-            renderGuestList(allGuests);
-          } else if (activeCategory === 'rodzina-panny') {
-            renderGuestList(guestCategories.rodzinaPanny);
-          } else if (activeCategory === 'rodzina-pana') {
-            renderGuestList(guestCategories.rodzinaPana);
-          } else if (activeCategory === 'znajomi') {
-            renderGuestList(guestCategories.znajomi);
+          // Przejdź do następnego lub zakończ
+          currentQuestion++;
+          if (currentQuestion < quizQuestions.length) {
+            quizQuestions[currentQuestion].style.display = 'block';
+            quizProgress.style.width = `${(currentQuestion + 1) * 10}%`;
+          } else {
+            // Koniec quizu
+            document.getElementById('quizScore').textContent = `${quizScore}/10`;
+            document.getElementById('quizScoreContainer').style.display = 'block';
+            showDownloadScreen();
           }
-          
-          // Zresetuj pole wyszukiwania
-          searchBox.value = '';
-        });
+        }, 1000);
       });
-      
-      // Obsługa przycisku dźwięku
-      soundToggle.addEventListener('click', function() {
-        toggleSound();
-      });
-      
-      // Obsługa przycisku pobierania
-      downloadButton.addEventListener('click', function() {
-        showQuiz();
-      });
-      
-      // Obsługa przycisku powrotu z quizu
-      backToListButton.addEventListener('click', function() {
-        hideQuiz();
-      });
-      
-      // Obsługa przycisku powrotu z ekranu pobierania
-      backFromDownloadButton.addEventListener('click', function() {
-        hideDownloadScreen();
-      });
-      
-      // Obsługa finalnego przycisku pobierania
-      finalDownloadButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        const timestamp = new Date().getTime();
-        // W prawdziwej aplikacji tutaj byłby kod do pobierania plików
-        alert('Pobieranie wszystkich zaproszeń rozpoczęte!');
-      });
-      
-      // Przygotowanie quizu
-      setupQuiz();
-    }
+    });
+  });
+}
+
+// Pokaż quiz
+function showQuiz() {
+  guestListElement.style.display = 'none';
+  searchBox.style.display = 'none';
+  quizContainer.style.display = 'block';
+  statusElement.textContent = 'Rozwiąż quiz, aby pobrać wszystkie zaproszenia';
+  downloadButton.style.display = 'none';
+}
+
+// Ukryj quiz
+function hideQuiz() {
+  quizContainer.style.display = 'none';
+  guestListElement.style.display = 'block';
+  searchBox.style.display = 'block';
+  statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
+  downloadButton.style.display = 'inline-block';
+}
+
+// Pokaż ekran pobierania
+function showDownloadScreen() {
+  quizContainer.style.display = 'none';
+  downloadContainer.style.display = 'block';
+}
+
+// Ukryj ekran pobierania
+function hideDownloadScreen() {
+  downloadContainer.style.display = 'none';
+  guestListElement.style.display = 'block';
+  searchBox.style.display = 'block';
+  statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
+  downloadButton.style.display = 'inline-block';
+  
+  // Reset quizu
+  resetQuiz();
+}
+
+// Reset quizu
+function resetQuiz() {
+  currentQuestion = 0;
+  quizScore = 0;
+  document.getElementById('quizScore').textContent = '0/10';
+  document.getElementById('quizScoreContainer').style.display = 'none';
+  quizProgress.style.width = '10%';
+  
+  // Resetuj pytania
+  const quizQuestions = document.querySelectorAll('.quiz-question');
+  quizQuestions.forEach((question, index) => {
+    // Pokaż tylko pierwsze pytanie
+    question.style.display = index === 0 ? 'block' : 'none';
     
-    // Ustawienie liczników
-    function setCounters() {
-      totalGuestsCounter.textContent = `${allGuests.length} gości`;
-      counterAll.textContent = allGuests.length;
-      counterRodzinaPanny.textContent = guestCategories.rodzinaPanny.length;
-      counterRodzinaPana.textContent = guestCategories.rodzinaPana.length;
-      counterZnajomi.textContent = guestCategories.znajomi.length;
-    }
-    
-    // Funkcja określająca kategorię gościa
-    function getGuestCategory(guest) {
-      if (guestCategories.rodzinaPanny.includes(guest)) {
-        return 'rodzina-panny';
-      } else if (guestCategories.rodzinaPana.includes(guest)) {
-        return 'rodzina-pana';
-      } else {
-        return 'znajomi';
-      }
-    }
-    
-    // Renderowanie listy gości
-    function renderGuestList(guests) {
-      guestListElement.innerHTML = '';
-      
-      if (guests.length === 0) {
-        const noResultsItem = document.createElement('div');
-        noResultsItem.classList.add('guest-item');
-        noResultsItem.textContent = 'Brak wyników wyszukiwania';
-        guestListElement.appendChild(noResultsItem);
-        return;
-      }
-      
-      guests.forEach(guest => {
-        const guestItem = document.createElement('div');
-        guestItem.classList.add('guest-item');
-        
-        // Dodaj klasę kategorii 
-        const category = getGuestCategory(guest);
-        guestItem.classList.add(category);
-        
-        guestItem.textContent = guest;
-        
-        if (selectedGuest === guest) {
-          guestItem.classList.add('selected');
-        }
-        
-        guestItem.addEventListener('click', function() {
-          // Jeśli kliknięto nowego gościa, pokaż efekty
-          const isNewGuest = guest !== lastClickedGuest;
-          lastClickedGuest = guest;
-          
-          selectGuest(guest);
-          
-          // Wyczyść poprzednie zaznaczenie
-          document.querySelectorAll('.guest-item').forEach(item => {
-            item.classList.remove('selected');
-          });
-          
-          // Zaznacz aktualny element
-          this.classList.add('selected');
-          
-          // Odtwórz dźwięk i pokaż zdjęcie tylko przy zmianie gościa
-          if (isNewGuest && !quizContainer.style.display === 'block') {
-            playGuestClickSound();
-          }
-        });
-        
-        guestListElement.appendChild(guestItem);
-      });
-    }
-    
-    // Wybór gościa
-    function selectGuest(guest) {
-      selectedGuest = guest;
-      updatePreview(guest);
-      statusElement.textContent = `Zaproszenie dla: ${guest}`;
-      statusSelectedGuestElement.textContent = `Wybrano: ${guest}`;
-    }
-    
-    // Aktualizacja podglądu
-    function updatePreview(guest) {
-      let html = invitationTemplate.replace(
-        '<span class="guest-name">Martę i Jacka Nowaków</span>',
-        `<span class="guest-name">${guest}</span>`
-      );
-      
-      const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-      doc.open();
-      doc.write(html);
-      doc.close();
-    }
-    
-    // Włącz/Wyłącz dźwięk
-    function toggleSound() {
-      muted = !muted;
-      
-      if (muted) {
-        soundIcon.innerHTML = `
-          <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
-        `;
-        soundTooltipText.textContent = 'Włącz dźwięki';
-        statusSound.textContent = 'Dźwięki: Wyciszone';
-      } else {
-        soundIcon.innerHTML = `
-          <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-          <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-          <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
-        `;
-        soundTooltipText.textContent = 'Wycisz dźwięki';
-        statusSound.textContent = 'Dźwięki: Włączone';
-      }
-      
-      // Zatrzymaj aktualny dźwięk
-      if (currentSound) {
-        currentSound.pause();
-        currentSound.currentTime = 0;
-      }
-    }
-    
-    // Odtwarzanie dźwięku po kliknięciu gościa
-    function playGuestClickSound() {
-      if (muted) return;
-      
-      // Losujemy indeks dźwięku, który nie był ostatnio odtwarzany
-      let soundIndex;
-      do {
-        soundIndex = Math.floor(Math.random() * soundsQueue.length);
-      } while (soundIndex === lastSoundIndex);
-      
-      lastSoundIndex = soundIndex;
-      
-      // Odtwarzamy wybrany dźwięk
-      const sound = document.getElementById(`sound${soundsQueue[soundIndex] + 1}`);
-      
-      if (currentSound) {
-        currentSound.pause();
-        currentSound.currentTime = 0;
-      }
-      
-      currentSound = sound;
-      
-      // Możemy odtwarzać dźwięk tylko przy interakcji użytkownika
-      try {
-        sound.play().then(() => {
-          // Pokazujemy obrazek
-          showPopupImage();
-        }).catch(error => {
-          console.log('Autoplay prevented:', error);
-        });
-      } catch (e) {
-        console.log('Error playing sound:', e);
-      }
-    }
-    
-    // Funkcja pokazująca wyskakujący obrazek
-    function showPopupImage() {
-      const imageIndex = Math.floor(Math.random() * images.length);
-      popupImage.src = images[imageIndex];
-      
-      // Ustawiamy pozycję obrazka losowo w oknie przeglądarki
-      const maxX = window.innerWidth - 250;
-      const maxY = window.innerHeight - 250;
-      
-      // Ustaw pozycję w pobliżu kursora myszy
-      let posX = mouseX + (Math.random() * 100 - 50);
-      let posY = mouseY + (Math.random() * 100 - 50);
-      
-      // Upewnij się, że obrazek pozostaje w oknie
-      posX = Math.max(0, Math.min(posX, maxX));
-      posY = Math.max(0, Math.min(posY, maxY));
-      
-      popupImage.style.left = `${posX}px`;
-      popupImage.style.top = `${posY}px`;
-      
+    // Resetuj opcje
+    const options = question.querySelectorAll('.quiz-option');
+    options.forEach(option => {
+      option.classList.remove('correct', 'incorrect');
+      option.style.pointerEvents = 'auto';
+    });
+  });
+}
+
+  // Funkcja odtwarzająca losowy dźwięk
+function playRandomSound() {
+  if (muted) return;
+  
+  // Losujemy indeks dźwięku, który nie był ostatnio odtwarzany
+  let soundIndex;
+  do {
+    soundIndex = Math.floor(Math.random() * soundsQueue.length);
+  } while (soundIndex === lastSoundIndex);
+  
+  lastSoundIndex = soundIndex;
+  
+  // Odtwarzamy wybrany dźwięk
+  const sound = document.getElementById(`sound${soundsQueue[soundIndex] + 1}`);
+  
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+  
+  currentSound = sound;
+  
+  // Możemy odtwarzać dźwięk tylko przy interakcji użytkownika
+  try {
+    sound.play().then(() => {
       // Pokazujemy obrazek
-      popupImage.classList.add('show');
-      
-      // Ukrywamy obrazek po 3 sekundach
-      setTimeout(() => {
-        popupImage.classList.remove('show');
-      }, 3000);
-    }
-    
-    // Konfiguracja quizu
-    function setupQuiz() {
-      const quizQuestions = document.querySelectorAll('.quiz-question');
-      
-      quizQuestions.forEach((question, index) => {
-        const options = question.querySelectorAll('.quiz-option');
-        
-        options.forEach(option => {
-          option.addEventListener('click', function() {
-            // Sprawdź odpowiedź
-            const isCorrect = this.getAttribute('data-correct') === 'true';
-            
-            // Podświetl wybraną odpowiedź
-            if (isCorrect) {
-              this.classList.add('correct');
-              quizScore++;
-            } else {
-              this.classList.add('incorrect');
-              // Podświetl poprawną odpowiedź
-              question.querySelector('[data-correct="true"]').classList.add('correct');
-            }
-            
-            // Wyłącz klikanie na opcje
-            options.forEach(opt => {
-              opt.style.pointerEvents = 'none';
-            });
-            
-            // Przejdź do następnego pytania po opóźnieniu
-            setTimeout(() => {
-              // Ukryj aktualne pytanie
-              question.style.display = 'none';
-              
-              // Przejdź do następnego lub zakończ
-              currentQuestion++;
-              if (currentQuestion < quizQuestions.length) {
-                quizQuestions[currentQuestion].style.display = 'block';
-                quizProgress.style.width = `${(currentQuestion + 1) * 10}%`;
-              } else {
-                // Koniec quizu
-                document.getElementById('quizScore').textContent = `${quizScore}/10`;
-                document.getElementById('quizScoreContainer').style.display = 'block';
-                showDownloadScreen();
-              }
-            }, 1000);
-          });
-        });
-      });
-    }
-    
-    // Pokaż quiz
-    function showQuiz() {
-      guestListElement.style.display = 'none';
-      searchBox.style.display = 'none';
-      quizContainer.style.display = 'block';
-      statusElement.textContent = 'Rozwiąż quiz, aby pobrać wszystkie zaproszenia';
-      downloadButton.style.display = 'none';
-      
-      document.getElementById('guestCategories').style.display = 'none';
-    }
-    
-    // Ukryj quiz
-    function hideQuiz() {
-      quizContainer.style.display = 'none';
-      guestListElement.style.display = 'block';
-      searchBox.style.display = 'block';
-      statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
-      downloadButton.style.display = 'inline-block';
-      
-      document.getElementById('guestCategories').style.display = 'flex';
-    }
-    
-    // Pokaż ekran pobierania
-    function showDownloadScreen() {
-      quizContainer.style.display = 'none';
-      downloadContainer.style.display = 'flex';
-    }
-    
-    // Ukryj ekran pobierania
-    function hideDownloadScreen() {
-      downloadContainer.style.display = 'none';
-      guestListElement.style.display = 'block';
-      searchBox.style.display = 'block';
-      statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
-      downloadButton.style.display = 'inline-block';
-      
-      document.getElementById('guestCategories').style.display = 'flex';
-      
-      // Reset quizu
-      resetQuiz();
-    }
-    
-    // Reset quizu
-    function resetQuiz() {
-      currentQuestion = 0;
-      quizScore = 0;
-      document.getElementById('quizScore').textContent = '0/10';
-      document.getElementById('quizScoreContainer').style.display = 'none';
-      quizProgress.style.width = '10%';
-      
-      // Resetuj pytania
-      const quizQuestions = document.querySelectorAll('.quiz-question');
-      quizQuestions.forEach((question, index) => {
-        // Pokaż tylko pierwsze pytanie
-        question.style.display = index === 0 ? 'block' : 'none';
-        
-        // Resetuj opcje
-        const options = question.querySelectorAll('.quiz-option');
-        options.forEach(option => {
-          option.classList.remove('correct', 'incorrect');
-          option.style.pointerEvents = 'auto';
-        });
-      });
-    }
-    
-    // Obsługa przycisków klawiatury
-    document.addEventListener('keydown', function(event) {
-      // Wyciszenie dźwięku klawiszem 'M'
-      if (event.key === 'm' || event.key === 'M') {
-        toggleSound();
-      }
-      
-      // Escape zamyka quiz i ekran pobierania
-      if (event.key === 'Escape') {
-        if (quizContainer.style.display !== 'none') {
-          hideQuiz();
-        }
-        if (downloadContainer.style.display !== 'none') {
-          hideDownloadScreen();
-        }
-      }
+      showPopupImage();
+    }).catch(error => {
+      console.log('Autoplay prevented:', error);
     });
-    
-    // Funkcje pomocnicze dla responsywności
-    function handleResize() {
-      if (window.innerWidth <= 576) {
-        document.querySelectorAll('.category-counter').forEach(counter => {
-          counter.style.display = 'none';
-        });
+  } catch (e) {
+    console.log('Error playing sound:', e);
+  }
+}
+
+// Funkcja pokazująca wyskakujący obrazek
+function showPopupImage() {
+  const imageIndex = Math.floor(Math.random() * images.length);
+  popupImage.src = images[imageIndex];
+  
+  // Ustawiamy pozycję obrazka losowo w oknie przeglądarki
+  const maxX = window.innerWidth - 250;
+  const maxY = window.innerHeight - 250;
+  
+  // Ustaw pozycję w pobliżu kursora myszy
+  let posX = mouseX + (Math.random() * 100 - 50);
+  let posY = mouseY + (Math.random() * 100 - 50);
+  
+  // Upewnij się, że obrazek pozostaje w oknie
+  posX = Math.max(0, Math.min(posX, maxX));
+  posY = Math.max(0, Math.min(posY, maxY));
+  
+  popupImage.style.left = `${posX}px`;
+  popupImage.style.top = `${posY}px`;
+  
+  // Pokazujemy obrazek
+  popupImage.classList.add('show');
+  
+  // Ukrywamy obrazek po 3 sekundach
+  setTimeout(() => {
+    popupImage.classList.remove('show');
+  }, 3000);
+}
+
+// Obsługa przycisków klawiatury
+document.addEventListener('keydown', function(event) {
+  // Wyciszenie dźwięku klawiszem 'M'
+  if (event.key === 'm' || event.key === 'M') {
+    muted = !muted;
+    statusElement.textContent = muted ? 
+      'Dźwięki wyciszone. Naciśnij M, aby włączyć.' : 
+      'Dźwięki włączone. Naciśnij M, aby wyciszyć.';
+      
+    setTimeout(() => {
+      if (selectedGuest) {
+        statusElement.textContent = `Zaproszenie dla: ${selectedGuest}`;
       } else {
-        document.querySelectorAll('.category-counter').forEach(counter => {
-          counter.style.display = 'inline-flex';
-        });
+        statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
       }
+    }, 2000);
+  }
+  
+  // Escape zamyka quiz i ekran pobierania
+  if (event.key === 'Escape') {
+    if (quizContainer.style.display !== 'none') {
+      hideQuiz();
     }
-    
-    // Obserwuj zmiany rozmiaru okna
-    window.addEventListener('resize', handleResize);
-    
-    // Inicjalizacja po załadowaniu strony
-    document.addEventListener('DOMContentLoaded', function() {
-      init();
-      handleResize();
+    if (downloadContainer.style.display !== 'none') {
+      hideDownloadScreen();
+    }
+  }
+});
+
+// Dodatkowe animacje i efekty UX
+function setupAnimations() {
+  // Delikatna animacja nagłówka
+  document.querySelector('h1').classList.add('animate-float');
+  
+  // Animacje hover dla elementów listy
+  const guestItems = document.querySelectorAll('.guest-item');
+  guestItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(5px)';
     });
-  </script>
+    
+    item.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(0)';
+    });
+  });
+}
+
+// Funkcje pomocnicze
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Obsługa responsywności
+function handleResize() {
+  const width = window.innerWidth;
+  const container = document.querySelector('.container');
+  
+  if (width < 768) {
+    container.style.boxShadow = 'none';
+    container.style.borderRadius = '0';
+  } else {
+    container.style.boxShadow = 'var(--shadow-lg)';
+    container.style.borderRadius = 'var(--radius-lg)';
+  }
+}
+
+// Nasłuchiwanie zmiany rozmiaru okna
+window.addEventListener('resize', debounce(handleResize, 250));
+
+// Inicjalizacja po załadowaniu strony
+document.addEventListener('DOMContentLoaded', function() {
+  init();
+  handleResize();
+  setupAnimations();
+  
+  // Symulacja ładowania
+  document.body.classList.add('loaded');
+});
+</script>
 </body>
-</html>
-
-
-
