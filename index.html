@@ -1,1679 +1,1201 @@
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generator zaproszeń ślubnych - stwórz eleganckie zaproszenia na swój wyjątkowy dzień">
-  <meta name="theme-color" content="#6c5b7b">
-  <title>Zaproszenia Ślubne | Generator</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6c5b7b;
-      --primary-light: #8d7b9d;
-      --primary-dark: #554762;
-      --secondary: #c79c59;
-      --secondary-light: #e3b870;
-      --secondary-dark: #a87f40;
-      --neutral-100: #ffffff;
-      --neutral-200: #f8f9fa;
-      --neutral-300: #e9ecef;
-      --neutral-400: #dee2e6;
-      --neutral-500: #adb5bd;
-      --neutral-600: #6c757d;
-      --neutral-700: #495057;
-      --neutral-800: #343a40;
-      --neutral-900: #212529;
-      --success: #3d8f6e;
-      --danger: #e74c3c;
-      --warning: #f0ad4e;
-      --font-primary: 'Playfair Display', serif;
-      --font-secondary: 'Montserrat', sans-serif;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
-      --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --transition: all 0.3s ease;
-      --spacing-xs: 4px;
-      --spacing-sm: 8px;
-      --spacing-md: 16px;
-      --spacing-lg: 24px;
-      --spacing-xl: 32px;
-      --spacing-xxl: 48px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-secondary);
-      background-color: var(--neutral-200);
-      color: var(--neutral-800);
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: var(--spacing-lg);
-      position: relative;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-primary);
-      margin-bottom: var(--spacing-md);
-      color: var(--neutral-900);
-      font-weight: 500;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: var(--spacing-xl);
-      position: relative;
-      padding-bottom: var(--spacing-md);
-    }
-
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--secondary), transparent);
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      background: var(--neutral-100);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-    }
-
-    .main-container {
-      display: flex;
-      min-height: 700px;
-    }
-
-    .sidebar {
-      width: 35%;
-      background-color: var(--neutral-100);
-      padding: var(--spacing-xl);
-      border-right: 1px solid var(--neutral-300);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .content-area {
-      width: 65%;
-      position: relative;
-      background-color: var(--neutral-200);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 0.95rem;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
-    .btn-icon {
-      display: inline-flex;
-      margin-right: 8px;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: var(--neutral-100);
-    }
-
-    .btn-primary:hover, .btn-primary:focus {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    .btn-secondary {
-      background-color: var(--neutral-600);
-      color: var(--neutral-100);
-    }
-
-    .btn-secondary:hover, .btn-secondary:focus {
-      background-color: var(--neutral-700);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-success {
-      background-color: var(--success);
-      color: var(--neutral-100);
-    }
-
-    .btn-success:hover, .btn-success:focus {
-      background-color: #317557;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-lg {
-      padding: 12px 28px;
-      font-size: 1.1rem;
-    }
-
-    .btn-block {
-      display: block;
-      width: 100%;
-    }
-
-    .input-group {
-      position: relative;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .input-icon {
-      position: absolute;
-      top: 50%;
-      left: 14px;
-      transform: translateY(-50%);
-      color: var(--neutral-600);
-      pointer-events: none;
-    }
-
-    .search-box {
-      width: 100%;
-      padding: 12px 12px 12px 40px;
-      border: 1px solid var(--neutral-400);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-secondary);
-      font-size: 0.95rem;
-      background-color: var(--neutral-100);
-      transition: var(--transition);
-    }
-
-    .search-box:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(108, 91, 123, 0.2);
-    }
-
-    .search-box::placeholder {
-      color: var(--neutral-500);
-    }
-
-    .guest-list {
-      flex: 1;
-      margin: var(--spacing-md) 0;
-      overflow-y: auto;
-      border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
-      background-color: var(--neutral-100);
-    }
-
-    .guest-list::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .guest-list::-webkit-scrollbar-track {
-      background: var(--neutral-200);
-      border-radius: var(--radius-sm);
-    }
-
-    .guest-list::-webkit-scrollbar-thumb {
-      background-color: var(--neutral-500);
-      border-radius: var(--radius-sm);
-    }
-
-    .guest-item {
-      padding: var(--spacing-md);
-      cursor: pointer;
-      border-bottom: 1px solid var(--neutral-300);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .guest-item:last-child {
-      border-bottom: none;
-    }
-
-    .guest-item:hover {
-      background-color: var(--neutral-200);
-    }
-
-    .guest-item.selected {
-      background-color: rgba(108, 91, 123, 0.1);
-      border-left: 3px solid var(--primary);
-    }
-
-    .guest-item.selected::after {
-      content: '';
-      position: absolute;
-      right: var(--spacing-md);
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: var(--primary);
-    }
-
-    .status-bar {
-      margin-top: var(--spacing-md);
-      padding: var(--spacing-md);
-      background-color: var(--neutral-200);
-      border-left: 3px solid var(--primary);
-      border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      color: var(--neutral-700);
-    }
-
-    .preview-frame {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background-color: var(--neutral-100);
-    }
-
-    .popup-image {
-      position: fixed;
-      z-index: 9999;
-      border: 5px solid var(--neutral-100);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-lg);
-      transition: transform 0.3s ease;
-      display: none;
-      max-width: 250px;
-      max-height: 250px;
-      transform-origin: center;
-    }
-
-    .popup-image.show {
-      display: block;
-      animation: pulse 1s;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.8); opacity: 0; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-
-    .section-title {
-      font-size: 1.25rem;
-      color: var(--neutral-800);
-      margin-bottom: var(--spacing-md);
-      padding-bottom: var(--spacing-sm);
-      border-bottom: 1px solid var(--neutral-300);
-    }
-
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: var(--spacing-md);
-    }
-
-    /* Quiz Styles */
-    .quiz-container {
-      padding: var(--spacing-lg);
-      background-color: var(--neutral-100);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .quiz-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .quiz-title {
-      font-size: 1.5rem;
-      margin: 0;
-    }
-
-    .quiz-question {
-      margin-bottom: var(--spacing-xl);
-      animation: slideInRight 0.5s ease;
-    }
-
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .quiz-question h3 {
-      font-size: 1.2rem;
-      margin-bottom: var(--spacing-md);
-      color: var(--neutral-800);
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-
-    .quiz-option {
-      background-color: var(--neutral-100);
-      border: 1px solid var(--neutral-300);
-      padding: var(--spacing-md) var(--spacing-lg);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition);
-      text-align: left;
-      font-family: var(--font-secondary);
-      font-size: 1rem;
-      position: relative;
-      padding-left: 45px;
-    }
-
-    .quiz-option:hover {
-      background-color: rgba(108, 91, 123, 0.05);
-      border-color: var(--primary-light);
-    }
-
-    .quiz-option::before {
-      content: 'A';
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background-color: var(--primary-light);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .quiz-option:nth-child(2)::before {
-      content: 'B';
-    }
-
-    .quiz-option:nth-child(3)::before {
-      content: 'C';
-    }
-
-    .quiz-option.correct {
-      background-color: rgba(61, 143, 110, 0.1);
-      border-color: var(--success);
-    }
-
-    .quiz-option.incorrect {
-      background-color: rgba(231, 76, 60, 0.1);
-      border-color: var(--danger);
-    }
-
-    .quiz-footer {
-      display: flex;
-      justify-content: space-between;
-      margin-top: var(--spacing-xl);
-    }
-
-    .quiz-progress {
-      width: 100%;
-      height: 6px;
-      background-color: var(--neutral-300);
-      border-radius: 3px;
-      margin-top: var(--spacing-xs);
-      overflow: hidden;
-    }
-
-    .quiz-progress-bar {
-      height: 100%;
-      background-color: var(--primary);
-      transition: width 0.5s ease;
-    }
-
-    .download-container {
-      text-align: center;
-      padding: var(--spacing-xxl) var(--spacing-xl);
-      background-color: rgba(61, 143, 110, 0.05);
-      border-radius: var(--radius-md);
-      animation: fadeInUp 0.8s ease;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .download-heading {
-      font-size: 1.5rem;
-      color: var(--success);
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .download-icon {
-      display: block;
-      margin: 0 auto var(--spacing-lg);
-      font-size: 4rem;
-      color: var(--success);
-    }
-
-    .download-actions {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .modal-backdrop.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal {
-      background-color: var(--neutral-100);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      max-width: 500px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      transform: translateY(-20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-backdrop.show .modal {
-      transform: translateY(0);
-    }
-
-    .modal-header {
-      padding: var(--spacing-lg);
-      border-bottom: 1px solid var(--neutral-300);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .modal-title {
-      font-size: 1.25rem;
-      margin: 0;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--neutral-600);
-    }
-
-    .modal-body {
-      padding: var(--spacing-lg);
-    }
-
-    .modal-footer {
-      padding: var(--spacing-lg);
-      border-top: 1px solid var(--neutral-300);
-      display: flex;
-      justify-content: flex-end;
-      gap: var(--spacing-md);
-    }
-
-    /* Special animations */
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-      body {
-        padding: var(--spacing-md);
-      }
-
-      .main-container {
-        flex-direction: column;
-      }
-
-      .sidebar, .content-area {
-        width: 100%;
-      }
-
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--neutral-300);
-      }
-
-      .content-area {
-        height: 500px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      body {
-        padding: var(--spacing-sm);
-      }
-
-      .quiz-option {
-        padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 40px;
-      }
-
-      .quiz-question h3 {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .controls {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .sidebar {
-        padding: var(--spacing-md);
-      }
-
-      .quiz-option::before {
-        width: 20px;
-        height: 20px;
-        font-size: 0.75rem;
-      }
-    }
-
-    /* Print styles */
-    @media print {
-      body {
-        background: none;
-        padding: 0;
-      }
-
-      .container, .sidebar, .controls, .search-box, h1, .quiz-container, .download-container, .status-bar {
-        display: none;
-      }
-
-      .main-container {
-        display: block;
-      }
-
-      .content-area {
-        width: 100%;
-      }
-
-      .popup-image {
-        display: none !important;
-      }
-    }
-
-    /* Invitation Template Styles */
-    .invitation-template {
-      --template-primary: #2d2d2d;
-      --template-accent: rgba(180, 160, 120, 0.7);
-      --template-background: #ffffff;
-      --template-spacing: 7px;
-      font-family: 'Cormorant', serif;
-      background-color: var(--template-background);
-      color: var(--template-primary);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: calc(var(--template-spacing) * 1);
-    }
-
-    .invitation-wrapper {
-      position: relative;
-      width: 105mm;
-      height: 148mm;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      background-color: #fff;
-      margin: 0 auto;
-    }
-
-    .invitation {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: calc(var(--template-spacing) * 1.8);
-      text-align: center;
-    }
-
-    .border-frame {
-      position: absolute;
-      top: calc(var(--template-spacing) * 1.2);
-      left: calc(var(--template-spacing) * 1.2);
-      right: calc(var(--template-spacing) * 1.2);
-      bottom: calc(var(--template-spacing) * 1.2);
-      border: 1px solid var(--template-accent);
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>Generator Zaproszeń Ślubnych</h1>
-  <div class="container">
-    <div class="main-container">
-      <div class="sidebar">
-        <div class="controls">
-          <button class="btn btn-primary" id="downloadButton">
-            <span class="btn-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-              </svg>
-            </span>
-            Pobierz wszystkie zaproszenia
-          </button>
-        </div>
-<div class="input-group">
-      <span class="input-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-      </span>
-      <input type="text" id="searchBox" class="search-box" placeholder="Wyszukaj gościa..." aria-label="Wyszukaj gościa">
-    </div>
-    
-    <div class="guest-list" id="guestList">
-      <!-- Lista gości będzie wygenerowana przez JavaScript -->
-    </div>
-    
-    <div class="status-bar" id="status">
-      Wybierz gościa z listy, aby wygenerować zaproszenie.
-    </div>
-    
-    <!-- Quiz o najlepszym szwagrze -->
-    <div class="quiz-container" id="quizContainer" style="display: none;">
-      <div class="quiz-header">
-        <h2 class="quiz-title">Quiz o Szwagrze</h2>
-        <button class="btn btn-secondary" id="backToListButton">
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-          </span>
-          Wróć do zaproszeń
-        </button>
-      </div>
-      
-      <div class="quiz-progress">
-        <div class="quiz-progress-bar" id="quizProgress" style="width: 10%"></div>
-      </div>
-      
-      <div class="quiz-question">
-        <h3>1. Kto jest najlepszym szwagrem na całym świecie?</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true">Dawid Stelmach</button>
-          <button class="quiz-option" data-correct="false">Brad Pitt</button>
-          <button class="quiz-option" data-correct="false">Jakiś inny typek</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>2. Jeśli Dawid Stelmach byłby zwierzęciem, to byłby:</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Leniwcem, bo ciągle odpoczywa</button>
-          <button class="quiz-option" data-correct="true">Lwem, królem zwierząt</button>
-          <button class="quiz-option" data-correct="false">Orłem, bo zawsze patrzy z góry</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>3. Co Dawid Stelmach robi najlepiej?</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Śpi do południa</button>
-          <button class="quiz-option" data-correct="false">Opowiada kiepskie dowcipy</button>
-          <button class="quiz-option" data-correct="true">Wszystko! Jest w tym absolutnym mistrzem</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>4. Jaki superbohater najbardziej przypomina Dawida Stelmacha?</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true">Superman, bo ma nadludzkie umiejętności</button>
-          <button class="quiz-option" data-correct="false">Batman, bo ciągle gdzieś znika</button>
-          <button class="quiz-option" data-correct="false">Iron Man, bo lubi błyszczeć</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>5. Gdyby Dawid Stelmach miał supermoc, to byłaby to:</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Umiejętność zasypiania na zawołanie w każdej sytuacji</button>
-          <button class="quiz-option" data-correct="true">Rozwiązywanie wszystkich problemów jednym spojrzeniem</button>
-          <button class="quiz-option" data-correct="false">Magiczna zdolność znikania, gdy trzeba zmywać naczynia</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>6. Dokończ zdanie: Dawid Stelmach jest tak przystojny, że...</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Jego żona czasem się na niego patrzy</button>
-          <button class="quiz-option" data-correct="false">Może ujść w tłumie niezauważony</button>
-          <button class="quiz-option" data-correct="true">Słońce prosi go o autograf</button>
-        </div>
-      </div>
-      
-              <div class="quiz-question" style="display: none;">
-        <h3>7. Jakby Dawid Stelmach był daniem, to byłby:</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Zimnym kebabem z wczoraj</button>
-          <button class="quiz-option" data-correct="false">Zwykłym kotletem schabowym</button>
-          <button class="quiz-option" data-correct="true">Wykwintnym daniem z gwiazdką Michelin</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>8. Największym talentem Dawida Stelmacha jest:</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Umiejętność spania podczas ważnych rozmów</button>
-          <button class="quiz-option" data-correct="true">Bycie najlepszym we wszystkim czego się dotknie</button>
-          <button class="quiz-option" data-correct="false">Opowiadanie tych samych historii milion razy</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>9. Co by się stało, gdyby Dawid Stelmach został prezydentem Polski?</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">Nic, zaspałby na zaprzysiężenie</button>
-          <button class="quiz-option" data-correct="false">Wprowadziłby obowiązkowe leżakowanie zamiast pracy</button>
-          <button class="quiz-option" data-correct="true">Polska stałaby się supermocarstwem w ciągu tygodnia</button>
-        </div>
-      </div>
-      
-      <div class="quiz-question" style="display: none;">
-        <h3>10. Czy jesteś absolutnie pewien/pewna, że Dawid Stelmach jest najwspanialszym szwagrem wszech czasów?</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true">Tak, jestem tego pewien jak niczego innego w życiu</button>
-          <button class="quiz-option" data-correct="true">Oczywiście, to niepodważalny fakt naukowy</button>
-          <button class="quiz-option" data-correct="true">Absolutnie! Dawid to legenda wśród szwagrów</button>
-        </div>
-      </div>
-      
-      <div class="quiz-footer">
-        <div id="quizScoreContainer" style="display: none;">
-          <span>Twój wynik: <strong id="quizScore">0/10</strong></span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="download-container" id="downloadContainer" style="display: none;">
-      <div class="download-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-        </svg>
-      </div>
-      
-      <h3 class="download-heading">Dziękujemy za rozwiązanie quizu!</h3>
-      <p>Teraz możesz pobrać wszystkie zaproszenia w jednym pliku.</p>
-      
-      <div class="download-actions">
-        <a href="#" class="btn btn-success btn-lg btn-block" id="finalDownloadButton">
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-            </svg>
-          </span>
-          Pobierz folder z zaproszeniami
-        </a>
-        <button class="btn btn-secondary" id="backFromDownloadButton">
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-          </span>
-          Wróć do wszystkich zaproszeń
-        </button>
-      </div>
-    </div>
-  </div>
-  
-  <div class="content-area" id="contentArea">
-    <iframe id="previewFrame" class="preview-frame" title="Podgląd zaproszenia"></iframe>
-    <img id="popupImage" class="popup-image" src="" alt="Efekt wizualny">
-  </div>
-</div>
- </div>
-  <!-- Dźwięki dla efektów -->
-<audio id="sound1" src="dzwieki/065392_long-wet-fart-54798.mp3" preload="auto"></audio>
-<audio id="sound2" src="dzwieki/wet-fart-2-42358.mp3" preload="auto"></audio>
-<audio id="sound3" src="dzwieki/wet-fart-6139.mp3" preload="auto"></audio>
-<audio id="sound4" src="dzwieki/wet-fart-42422.mp3" preload="auto"></audio>
-  <script>
-    // Lista gości
-    const guestList = [
-      // Rodzina Pani Młodej
-      "Rodziców Alicję oraz Sławomira Zawada",
-      "Karolinę, Dawida oraz Izabelkę Stelmach",
-      "Babcię Franię Gawlik",
-      "Natalię oraz Aleksandra Zawadę",
-      "Ciocię Beatę wraz z Krzysztofem Milerskim oraz Sylwią Gawlik",
-      "Mateusza Gawlika oraz Gosię Krzywon",
-      "Magdę Gawlik-Wrzeszcz oraz Filipa Wrzeszcz",
-      "Jowitę Gawlik wraz z osobą towarzyszącą, Amelkę Chmiel oraz Adasia",
-      "Rodziców chrzestnych Ciocię Ewę oraz Wujka Mietka Gawlik",
-      "Anię oraz Krzyśka Staniek wraz z dziećmi",
-      "Ciocię Aurelię Kohut wraz z osobą towarzyszącą",
-      
-      // Rodzina Pana Młodego
-      "Rodziców Adriannę oraz Rafała wraz z Niną Dziedzic",
-      "Babcię Łucję oraz Dziadka Stanisława Dziedzic",
-      "Babcię Łucję Madzię",
-      "Weronikę oraz Wojciecha Swobodów",
-      "Łukasza oraz Magdalenę wraz z Ksawerym Madzia",
-      "Beatę oraz Piotra wraz z Martyną i Dawidem Glajc",
-      "Martę Dziedzic, Krzysztofa Orela wraz z Bartoszem",
-      "Barbarę oraz Marka Pylicę",
-      "Sylwię Krzemień-Kolasińską wraz z osobą towarzyszącą",
-      
-      // Znajomi
-      "Rafała Nawodyło wraz z osobą towarzyszącą",
-      "Wojciecha Foltyna wraz z osobą towarzyszącą",
-      "Szymona Huplika wraz z osobą towarzyszącą",
-      "Piotra Waliczka wraz z osobą towarzyszącą",
-      "Annę oraz Krzysztofa Macura",
-      "Krystiana Urbańskiego wraz z osobą towarzyszącą",
-      "Arkadiusza Szczypkę oraz Agnieszkę Fizek",
-      "Wiktorię Malec oraz Przemysława Tomicę",
-      "Aleksandrę oraz Eryka Sztwiertnię",
-      "Arkadiusza Strokę oraz Marcina Żaka",
-      "Victorię Ogorzelec oraz Michała Zontka",
-      "Dominikę Obracaj oraz Mateusza Kumorka",
-      "Weronikę oraz Dawida Jankowskich",
-      "Klaudię oraz Jakuba Ferfeckich",
-      "Agnieszkę Kucharską wraz z osobą towarzyszącą",
-      "Magdalenę oraz Sebastiana Wróbel",
-      "Magdalenę Grudzień wraz z osobą towarzyszącą",
-      "Adama oraz Aleksandrę Woźnicę", 
-      "Mateusza Brudnego",
-      "Łukasza Pszczółkę"
-    ];
-    
-    // Ścieżki do obrazków
-    const images = [
-      "https://aaaas.b-cdn.net/pupcia.jpg"
-    ];
-    
-    // Zmienne i elementy DOM
-    const guestListElement = document.getElementById('guestList');
-    const searchBox = document.getElementById('searchBox');
-    const previewFrame = document.getElementById('previewFrame');
-    const popupImage = document.getElementById('popupImage');
-    const statusElement = document.getElementById('status');
-    const downloadButton = document.getElementById('downloadButton');
-    const quizContainer = document.getElementById('quizContainer');
-    const downloadContainer = document.getElementById('downloadContainer');
-    const backToListButton = document.getElementById('backToListButton');
-    const backFromDownloadButton = document.getElementById('backFromDownloadButton');
-    const finalDownloadButton = document.getElementById('finalDownloadButton');
-    const quizProgress = document.getElementById('quizProgress');
-    
-    // Zmienne do śledzenia aktualnego dźwięku
-    let currentSound = null;
-    let lastSoundIndex = -1;
-    let soundsQueue = [0, 1, 2, 3]; // kolejka indeksów dźwięków
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentQuestion = 0;
-    let quizScore = 0;
-    let selectedGuest = null;
-    let muted = false;
-    
-    // Śledzenie pozycji myszy
-    document.addEventListener('mousemove', function(e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    // Obsługa dotyku dla urządzeń mobilnych
-    document.addEventListener('touchstart', function(e) {
-      if (e.touches.length > 0) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
-    });
-    
-    document.addEventListener('touchmove', function(e) {
-      if (e.touches.length > 0) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
-    });
-    
-    // Pobranie HTMLa szablonu zaproszenia
-    const invitationTemplate = `
 <!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natalia & Konrad - Zaproszenie ślubne</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary-color: #2d2d2d;
-      --accent-color: rgba(180, 160, 120, 0.7);
-      --background-color: #ffffff;
-      --spacing-unit: 7px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--background-color);
-      color: var(--primary-color);
-      font-family: 'Cormorant', serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: calc(var(--spacing-unit) * 1);
-    }
-
-    .invitation-wrapper {
-      position: relative;
-      width: 105mm;
-      height: 148mm;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      background-color: #fff;
-      margin: 0 auto;
-    }
-
-    .invitation {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: calc(var(--spacing-unit) * 1.8);
-      text-align: center;
-    }
-
-    .border-frame {
-      position: absolute;
-      top: calc(var(--spacing-unit) * 1.2);
-      left: calc(var(--spacing-unit) * 1.2);
-      right: calc(var(--spacing-unit) * 1.2);
-      bottom: calc(var(--spacing-unit) * 1.2);
-      border: 1px solid var(--accent-color);
-      pointer-events: none;
-    }
-
-    .content {
-      position: relative;
-      width: 100%;
-      max-width: 85mm;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .monogram-container {
-      position: relative;
-      margin: 0 auto calc(var(--spacing-unit) * 1.5);
-      width: 120px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .monogram-divider {
-      position: absolute;
-      height: 70px;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
-      left: 50%;
-      top: 0;
-    }
-
-    .monogram {
-      position: absolute;
-      font-family: 'Italiana', serif;
-      font-size: 60px;
-      line-height: 1;
-      color: var(--primary-color);
-    }
-
-    .n-letter {
-      left: 8px;
-    }
-
-    .k-letter {
-      right: 8px;
-    }
-
-    .names {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      font-weight: 300;
-      text-transform: uppercase;
-      margin-bottom: calc(var(--spacing-unit) * 1.5);
-      color: var(--primary-color);
-    }
-
-    .invite-text {
-      font-size: 11px;
-      line-height: 1.6;
-      margin-bottom: calc(var(--spacing-unit) * 1.2);
-      font-weight: 400;
-    }
-
-    .guest-name {
-      font-style: italic;
-      font-weight: 400;
-      font-size: 13px;
-      margin: calc(var(--spacing-unit) * 0.5) 0;
-      color: var(--primary-color);
-      display: block;
-    }
-
-    .date-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: calc(var(--spacing-unit) * 1) 0;
-    }
-
-    .date-line {
-      height: 1px;
-      width: 40px;
-      background-color: var(--primary-color);
-    }
-
-    .date {
-      margin: 0 calc(var(--spacing-unit) * 1);
-      font-size: 28px;
-      font-weight: 400;
-      font-family: 'Italiana', serif;
-    }
-
-    .date-details {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 75mm;
-      margin: 0 auto calc(var(--spacing-unit) * 0.8);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 8px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--primary-color);
-      font-weight: 300;
-    }
-
-    .location {
-      margin-top: calc(var(--spacing-unit) * 1.5);
-      font-style: italic;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .divider {
-      height: 1px;
-      width: 40px;
-      background-color: var(--primary-color);
-      margin: calc(var(--spacing-unit) * 1.5) auto;
-      opacity: 0.5;
-    }
-
-    .reception-text {
-      font-size: 11px;
-      line-height: 1.5;
-      margin-bottom: calc(var(--spacing-unit) * 1);
-      font-weight: 400;
-    }
-
-    .reception-location {
-      font-style: italic;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: calc(var(--spacing-unit) * 0.4);
-    }
-
-    .reception-address {
-      font-size: 10px;
-      line-height: 1.4;
-      margin-bottom: calc(var(--spacing-unit) * 1);
-    }
-
-    @media print {
-      body {
-        background: none;
-        padding: 0;
-        margin: 0;
-        font-size: initial;
-        page-break-after: avoid;
-        page-break-before: avoid;
-        page-break-inside: avoid;
-      }
-
-      .invitation-wrapper {
-        box-shadow: none;
-        margin: 0 auto;
-        width: 105mm;
-        height: 148mm;
-        page-break-after: avoid;
-        page-break-before: avoid;
-        page-break-inside: avoid;
-      }
-
-      @page {
-        size: 105mm 148mm;
-        margin: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="invitation-wrapper">
-    <div class="invitation">
-      <div class="border-frame"></div>
-<div class="content">
-    <div class="monogram-container">
-      <div class="monogram-divider"></div>
-      <div class="monogram n-letter">N</div>
-      <div class="monogram k-letter">K</div>
-    </div>
-
-    <!-- ZMIENIONE DANE -->
-    <div class="names">NATALIA ZAWADA I KONRAD DZIEDZIC</div>
-
-    <div class="invite-text">
-      z radością zapraszają<br>
-      <span class="guest-name">Martę i Jacka Nowaków</span>
-      na uroczystość zaślubin,<br>
-      która odbędzie się
-    </div>
-
-    <div class="date-container">
-      <div class="date-line"></div>
-      <div class="date">9</div>
-      <div class="date-line"></div>
-    </div>
-
-    <div class="date-details">
-      <span>PAŹDZIERNIKA</span>
-      <span>2025</span>
-      <span>GODZ. 13:00</span>
-    </div>
-
-    <div class="location">
-      w Kościele św. Piotra i Pawła<br>
-      w Skoczowie
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="reception-text">
-      Po uroczystości zaślubin mamy zaszczyt zaprosić Was<br>
-      na przyjęcie weselne, które odbędzie się
-    </div>
-
-    <div class="reception-location">
-      w Winnicy Toskańskiej Romeo i Julia
-    </div>
-
-    <div class="reception-address">
-      ul. Myśliwska 1, 43-370 Szczyrk
-    </div>
-  </div>
-</div>
-  </div>
-</body>
-</html>
-    `;
-// Inicjalizacja
-function init() {
-  // Generowanie listy gości
-  renderGuestList(guestList);
-  
-  // Obsługa wyszukiwania
-  searchBox.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase();
-    const filteredGuests = guestList.filter(guest => 
-      guest.toLowerCase().includes(searchTerm)
-    );
-    renderGuestList(filteredGuests);
-  });
-  
-  // Obsługa przycisku pobierania
-  downloadButton.addEventListener('click', function() {
-    showQuiz();
-  });
-  
-  // Obsługa przycisku powrotu z quizu
-  backToListButton.addEventListener('click', function() {
-    hideQuiz();
-  });
-  
-  // Obsługa przycisku powrotu z ekranu pobierania
-  backFromDownloadButton.addEventListener('click', function() {
-    hideDownloadScreen();
-  });
-  
-  // Obsługa finalnego przycisku pobierania
-  finalDownloadButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    const timestamp = new Date().getTime();
-    // W prawdziwej aplikacji tutaj byłby kod do pobierania plików
-    alert('Pobieranie wszystkich zaproszeń rozpoczęte!');
-  });
-  
-  // Przygotowanie quizu
-  setupQuiz();
-  
-  // Efekty losowych dźwięków
-  setInterval(playRandomSound, 15000);
-}
-
-// Renderowanie listy gości
-function renderGuestList(guests) {
-  guestListElement.innerHTML = '';
-  
-  if (guests.length === 0) {
-    const noResultsItem = document.createElement('div');
-    noResultsItem.classList.add('guest-item');
-    noResultsItem.textContent = 'Brak wyników wyszukiwania';
-    guestListElement.appendChild(noResultsItem);
-    return;
-  }
-  
-  guests.forEach(guest => {
-    const guestItem = document.createElement('div');
-    guestItem.classList.add('guest-item');
-    guestItem.textContent = guest;
-    
-    if (selectedGuest === guest) {
-      guestItem.classList.add('selected');
-    }
-    
-    guestItem.addEventListener('click', function() {
-      selectGuest(guest);
-      
-      // Wyczyść poprzednie zaznaczenie
-      document.querySelectorAll('.guest-item').forEach(item => {
-        item.classList.remove('selected');
-      });
-      
-      // Zaznacz aktualny element
-      this.classList.add('selected');
-    });
-    
-    guestListElement.appendChild(guestItem);
-  });
-}
-
-// Wybór gościa
-function selectGuest(guest) {
-  selectedGuest = guest;
-  updatePreview(guest);
-  statusElement.textContent = `Zaproszenie dla: ${guest}`;
-}
-
-// Aktualizacja podglądu
-function updatePreview(guest) {
-  let html = invitationTemplate.replace(
-    '<span class="guest-name">Martę i Jacka Nowaków</span>',
-    `<span class="guest-name">${guest}</span>`
-  );
-  
-  const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-  doc.open();
-  doc.write(html);
-  doc.close();
-}
-
-// Konfiguracja quizu
-function setupQuiz() {
-  const quizQuestions = document.querySelectorAll('.quiz-question');
-  
-  quizQuestions.forEach((question, index) => {
-    const options = question.querySelectorAll('.quiz-option');
-    
-    options.forEach(option => {
-      option.addEventListener('click', function() {
-        // Sprawdź odpowiedź
-        const isCorrect = this.getAttribute('data-correct') === 'true';
+ <html lang="pl">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Generator Zaproszeń Ślubnych z Efektami</title>
+ 
+   <style>
+     body {
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       margin: 0;
+       padding: 20px;
+       background-color: #f8f9fa;
+       color: #333;
+     }
+ 
+     h1 {
+       color: #6c5b7b;
+       text-align: center;
+       margin-bottom: 30px;
+       font-size: 2.2rem;
+     }
+ 
+     .main-container {
+       display: flex;
+       max-width: 1400px;
+       margin: 0 auto;
+       gap: 20px;
+     }
+ 
+     .sidebar {
+       width: 30%;
+       background-color: white;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+     }
+ 
+     .content-area {
+       width: 70%;
+       position: relative;
+     }
+ 
+     .button {
+       background-color: #6c5b7b;
+       border: none;
+       color: white;
+       padding: 10px 20px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 16px;
+       margin: 10px 2px;
+       cursor: pointer;
+       border-radius: 4px;
+       transition: background-color 0.3s;
+     }
+ 
+     .button:hover {
+       background-color: #5a4a67;
+     }
+ 
+     .preview {
+       width: 100%;
+       height: 600px;
+       border: 1px solid #ddd;
+       margin-top: 20px;
+       border-radius: 8px;
+       overflow: hidden;
+     }
+ 
+     .status {
+       margin-top: 20px;
+       padding: 15px;
+       background-color: #f0f0f0;
+       border-left: 5px solid #6c5b7b;
+       border-radius: 4px;
+       font-size: 14px;
+     }
+ 
+     .guest-list {
+       margin-top: 20px;
+       height: 400px;
+       overflow-y: auto;
+       border: 1px solid #ddd;
+       padding: 10px;
+       border-radius: 6px;
+     }
+ 
+     .guest-item {
+       padding: 10px;
+       cursor: pointer;
+       border-bottom: 1px solid #eee;
+       transition: background-color 0.2s;
+     }
+ 
+     .guest-item:hover {
+       background-color: #f0f0f0;
+     }
+ 
+     .selected {
+       background-color: #efe5fd;
+       border-left: 3px solid #6c5b7b;
+     }
+ 
+     .popup-image {
+       position: fixed;
+       z-index: 9999;
+       border: 5px solid white;
+       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+       transition: transform 0.3s;
+       display: none;
+       max-width: 250px;
+       max-height: 250px;
+       transform-origin: center;
+     }
+ 
+     .popup-image.show {
+       display: block;
+       animation: pulse 1s;
+     }
+ 
+     @keyframes pulse {
+       0% { transform: scale(0.8); opacity: 0; }
+       50% { transform: scale(1.1); opacity: 1; }
+       100% { transform: scale(1); }
+     }
+ 
+     .search-box {
+       width: 100%;
+       padding: 10px;
+       margin-bottom: 15px;
+       border: 1px solid #ddd;
+       border-radius: 4px;
+       font-size: 14px;
+     }
+ 
+     .controls {
+       display: flex;
+       justify-content: space-between;
+       margin-bottom: 15px;
+     }
+ 
+     @media print {
+       .sidebar, .button, .search-box, .controls, h1, .quiz-container, .download-container {
+         display: none;
+       }
+ 
+       .main-container {
+         display: block;
+       }
+ 
+       .content-area {
+         width: 100%;
+       }
+ 
+       .popup-image {
+         display: none !important;
+       }
+     }
+ 
+     /* Style dla quizu */
+     .quiz-container {
+       margin-top: 20px;
+       padding: 20px;
+       background-color: #f5f0ff;
+       border-radius: 8px;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+     }
+ 
+     .quiz-question {
+       margin-bottom: 20px;
+     }
+ 
+     .quiz-question h3 {
+       color: #6c5b7b;
+       margin-bottom: 15px;
+       font-size: 18px;
+     }
+ 
+     .quiz-options {
+       display: flex;
+       flex-direction: column;
+       gap: 10px;
+     }
+ 
+     .quiz-option {
+       background-color: #fff;
+       border: 1px solid #ddd;
+       padding: 12px 15px;
+       border-radius: 4px;
+       cursor: pointer;
+       text-align: left;
+       font-size: 16px;
+       transition: all 0.3s;
+     }
+ 
+     .quiz-option:hover {
+       background-color: #efe5fd;
+       border-color: #6c5b7b;
+     }
+ 
+     .download-container {
+       margin-top: 20px;
+       padding: 20px;
+       background-color: #e5ffea;
+       border-radius: 8px;
+       text-align: center;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+     }
+ 
+     .download-container h3 {
+       color: #4a7a55;
+       margin-bottom: 15px;
+     }
+ 
+     #finalDownloadButton {
+       background-color: #4a7a55;
+       padding: 15px 30px;
+       font-size: 18px;
+       margin-top: 10px;
+     }
+ 
+     #finalDownloadButton:hover {
+       background-color: #3d6347;
+     }
+ 
+     /* Dodatkowe style dla responsywności */
+     @media (max-width: 1024px) {
+       .main-container {
+         flex-direction: column;
+       }
+ 
+       .sidebar, .content-area {
+         width: 100%;
+       }
+ 
+       .preview {
+         height: 500px;
+       }
+     }
+ 
+     @media (max-width: 768px) {
+       body {
+         padding: 10px;
+       }
+ 
+       h1 {
+         font-size: 1.8rem;
+       }
+ 
+       .preview {
+         height: 400px;
+       }
+ 
+       .quiz-option {
+         padding: 10px;
+         font-size: 14px;
+       }
+ 
+       #finalDownloadButton {
+         padding: 12px 20px;
+         font-size: 16px;
+       }
+     }
+ 
+     @media (max-width: 480px) {
+       h1 {
+         font-size: 1.5rem;
+         margin-bottom: 15px;
+       }
+ 
+       .button {
+         padding: 8px 15px;
+         font-size: 14px;
+       }
+ 
+       .preview {
+         height: 350px;
+       }
+ 
+       .guest-list {
+         height: 300px;
+       }
+ 
+       .quiz-question h3 {
+         font-size: 16px;
+       }
+ 
+       .quiz-option {
+         padding: 8px 10px;
+         font-size: 13px;
+       }
+ 
+       .popup-image {
+         max-width: 200px;
+         max-height: 200px;
+       }
+ 
+       #finalDownloadButton {
+         padding: 10px 15px;
+         font-size: 14px;
+       }
+     }
+ 
+     /* Fix dla problemów z wyświetlaniem na urządzeniach o niższej rozdzielczości */
+     .popup-image.show {
+       display: block;
+       animation: pulse 1s;
+       position: fixed; /* Zapewnia, że zdjęcie będzie zawsze widoczne */
+       top: 50%; /* Wyśrodkowanie pionowe */
+       left: 50%; /* Wyśrodkowanie poziome */
+       transform: translate(-50%, -50%); /* Dokładne wyśrodkowanie */
+       z-index: 9999; /* Upewnia się, że obraz jest na wierzchu */
+     }
+ 
+     /* Dodatkowe animacje i efekty dla lepszego doświadczenia mobilnego */
+     .quiz-option.selected {
+       background-color: #efe5fd;
+       border-color: #6c5b7b;
+       font-weight: bold;
+     }
+ 
+     .quiz-option:active {
+       transform: scale(0.98);
+     }
+ 
+     #finalDownloadButton:active {
+       transform: scale(0.95);
+     }
+ 
+     .quiz-header {
+       display: flex;
+       justify-content: flex-start;
+       margin-bottom: 20px;
+     }
+ 
+     .back-button {
+       background-color: #5a6268;
+     }
+ 
+     .back-button:hover {
+       background-color: #4a5258;
+     }
+   </style>
+ </head>
+ <body>
+   <h1>Generator Zaproszeń Ślubnych</h1>
+ 
+   <div class="main-container">
+     <div class="sidebar">
+       <div class="controls">
+         <button class="button" id="downloadButton">Pobierz wszystkie zaproszenia</button>
+       </div>
+ 
+       <input type="text" id="searchBox" class="search-box" placeholder="Szukaj gościa...">
+ 
+       <div class="guest-list" id="guestList">
+         <!-- Lista gości będzie wygenerowana przez JavaScript -->
+       </div>
+ 
+       <div class="status" id="status">
+         Wybierz gościa z listy, aby wygenerować zaproszenie.
+       </div>
+ 
+       <!-- Quiz o najlepszym szwagrze -->
+       <div class="quiz-container" id="quizContainer" style="display: none;">
+         <div class="quiz-header">
+           <button class="button back-button" id="backToListButton">Wróć do wszystkich zaproszeń</button>
+         </div>
+ 
+         <div class="quiz-question">
+           <h3>1. Kto jest najlepszym szwagrem na całym świecie?</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="true">A - Dawid Stelmach</button>
+             <button class="quiz-option" data-correct="false">B - Brad Pitt</button>
+             <button class="quiz-option" data-correct="false">C - Jakiś inny typek</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>2. Jeśli Dawid Stelmach byłby zwierzęciem, to byłby:</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Leniwcem, bo ciągle odpoczywa</button>
+             <button class="quiz-option" data-correct="true">B - Lwem, królem zwierząt</button>
+             <button class="quiz-option" data-correct="false">C - Orłem, bo zawsze patrzy z góry</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>3. Co Dawid Stelmach robi najlepiej?</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Śpi do południa</button>
+             <button class="quiz-option" data-correct="false">B - Opowiada kiepskie dowcipy</button>
+             <button class="quiz-option" data-correct="true">C - Wszystko! Jest w tym absolutnym mistrzem</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>4. Jaki superbohater najbardziej przypomina Dawida Stelmacha?</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="true">A - Superman, bo ma nadludzkie umiejętności</button>
+             <button class="quiz-option" data-correct="false">B - Batman, bo ciągle gdzieś znika</button>
+             <button class="quiz-option" data-correct="false">C - Iron Man, bo lubi błyszczeć</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>5. Gdyby Dawid Stelmach miał supermoc, to byłaby to:</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Umiejętność zasypiania na zawołanie w każdej sytuacji</button>
+             <button class="quiz-option" data-correct="true">B - Rozwiązywanie wszystkich problemów jednym spojrzeniem</button>
+             <button class="quiz-option" data-correct="false">C - Magiczna zdolność znikania, gdy trzeba zmywać naczynia</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>6. Dokończ zdanie: Dawid Stelmach jest tak przystojny, że...</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Jego żona czasem się na niego patrzy</button>
+             <button class="quiz-option" data-correct="false">B - Może ujść w tłumie niezauważony</button>
+             <button class="quiz-option" data-correct="true">C - Słońce prosi go o autograf</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>7. Jakby Dawid Stelmach był daniem, to byłby:</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Zimnym kebabem z wczoraj</button>
+             <button class="quiz-option" data-correct="false">B - Zwykłym kotletem schabowym</button>
+             <button class="quiz-option" data-correct="true">C - Wykwintnym daniem z gwiazdką Michelin</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>8. Największym talentem Dawida Stelmacha jest:</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Umiejętność spania podczas ważnych rozmów</button>
+             <button class="quiz-option" data-correct="true">B - Bycie najlepszym we wszystkim czego się dotknie</button>
+             <button class="quiz-option" data-correct="false">C - Opowiadanie tych samych historii milion razy</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>9. Co by się stało, gdyby Dawid Stelmach został prezydentem Polski?</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="false">A - Nic, zaspałby na zaprzysiężenie</button>
+             <button class="quiz-option" data-correct="false">B - Wprowadziłby obowiązkowe leżakowanie zamiast pracy</button>
+             <button class="quiz-option" data-correct="true">C - Polska stałaby się supermocarstwem w ciągu tygodnia</button>
+           </div>
+         </div>
+ 
+         <div class="quiz-question" style="display: none;">
+           <h3>10. Czy jesteś absolutnie pewien/pewna, że Dawid Stelmach jest najwspanialszym szwagrem wszech czasów?</h3>
+           <div class="quiz-options">
+             <button class="quiz-option" data-correct="true">A - Tak, jestem tego pewien jak niczego innego w życiu</button>
+             <button class="quiz-option" data-correct="true">B - Oczywiście, to niepodważalny fakt naukowy</button>
+             <button class="quiz-option" data-correct="true">C - Absolutnie! Dawid to legenda wśród szwagrów</button>
+           </div>
+         </div>
+       </div>
+ 
+       <div class="download-container" id="downloadContainer" style="display: none;">
+         <h3>Dziękujemy! Teraz możesz pobrać wszystkie zaproszenia</h3>
+         <a href="#" class="button" id="finalDownloadButton">Pobierz folder z zaproszeniami</a>
+         <div style="margin-top: 15px;">
+           <button class="button back-button" id="backFromDownloadButton">Wróć do wszystkich zaproszeń</button>
+         </div>
+       </div>
+     </div>
+ 
+     <div class="content-area" id="contentArea">
+       <iframe id="previewFrame" class="preview"></iframe>
+       <img id="popupImage" class="popup-image" src="" alt="Efekt wizualny">
+     </div>
+   </div>
+ 
+   <!-- Dźwięki -->
+   <audio id="sound1" src="dzwieki/065392_long-wet-fart-54798.mp3" preload="auto"></audio>
+   <audio id="sound2" src="dzwieki/wet-fart-2-42358.mp3" preload="auto"></audio>
+   <audio id="sound3" src="dzwieki/wet-fart-6139.mp3" preload="auto"></audio>
+   <audio id="sound4" src="dzwieki/wet-fart-42422.mp3" preload="auto"></audio>
+ 
+   <script>
+     // Lista gości
+     const guestList = [
+       // Rodzina Pani Młodej
+       "Rodziców Alicję oraz Sławomira Zawada",
+       "Karolinę, Dawida oraz Izabelkę Stelmach",
+       "Babcię Franię Gawlik",
+       "Natalię oraz Aleksandra Zawadę",
+       "Ciocię Beatę wraz z Krzysztofem Milerskim oraz Sylwią Gawlik",
+       "Mateusza Gawlika oraz Gosię Krzywon",
+       "Magdę Gawlik-Wrzeszcz oraz Filipa Wrzeszcz",
+       "Jowitę Gawlik wraz z osobą towarzyszącą, Amelkę Chmiel oraz Adasia",
+       "Rodziców chrzestnych Ciocię Ewę oraz Wujka Mietka Gawlik",
+       "Anię oraz Krzyśka Staniek wraz z dziećmi",
+       "Ciocię Aurelię Kohut wraz z osobą towarzyszącą",
+ 
+       // Rodzina Pana Młodego
+       "Rodziców Adriannę oraz Rafała wraz z Niną Dziedzic",
+       "Babcię Łucję oraz Dziadka Stanisława Dziedzic",
+       "Babcię Łucję Madzię",
+       "Weronikę oraz Wojciecha Swobodów",
+       "Łukasza oraz Magdalenę wraz z Ksawerym Madzia",
+       "Beatę oraz Piotra wraz z Martyną i Dawidem Glajc",
+       "Martę Dziedzic, Krzysztofa Orela wraz z Bartoszem",
+       "Barbarę oraz Marka Pylicę",
+       "Sylwię Krzemień-Kolasińską wraz z osobą towarzyszącą",
+ 
+       // Znajomi
+       "Rafała Nawodyło wraz z osobą towarzyszącą",
+       "Wojciecha Foltyna wraz z osobą towarzyszącą",
+       "Szymona Huplika wraz z osobą towarzyszącą",
+       "Piotra Waliczka wraz z osobą towarzyszącą",
+       "Annę oraz Krzysztofa Macura",
+       "Krystiana Urbańskiego wraz z osobą towarzyszącą",
+       "Arkadiusza Szczypkę oraz Agnieszkę Fizek",
+       "Wiktorię Malec oraz Przemysława Tomicę",
+       "Aleksandrę oraz Eryka Sztwiertnię",
+       "Arkadiusza Strokę oraz Marcina Żaka",
+       "Victorię Ogorzelec oraz Michała Zontka",
+       "Dominikę Obracaj oraz Mateusza Kumorka",
+       "Weronikę oraz Dawida Jankowskich",
+       "Klaudię oraz Jakuba Ferfeckich",
+       "Agnieszkę Kucharską wraz z osobą towarzyszącą",
+       "Magdalenę oraz Sebastiana Wróbel",
+       "Magdalenę Grudzień wraz z osobą towarzyszącą",
+       "Adama oraz Aleksandrę Woźnicę", 
+       "Mateusza Brudnego",
+       "Łukasza Pszczółkę"
+     ];
+ 
+     // Ścieżki do obrazków - możesz podmienić na własne
+     const images = [
+       "https://aaaas.b-cdn.net/pupcia.jpg"
+     ];
+ 
+     // Pobranie elementów audio
+     const sounds = [
+       document.getElementById('sound1'),
+       document.getElementById('sound2'),
+       document.getElementById('sound3'),
+       document.getElementById('sound4')
+     ];
+ 
+     // Status wyciszenia
+     let muted = false;
+ 
+     // Zmienne do śledzenia aktualnego dźwięku
+     let currentSound = null;
+     let lastSoundIndex = -1;
+     let soundsQueue = [0, 1, 2, 3]; // kolejka indeksów dźwięków
+     let mouseX = 0;
+     let mouseY = 0;
+ 
+     // Śledzimy pozycję myszy
+     document.addEventListener('mousemove', function(e) {
+       mouseX = e.clientX;
+       mouseY = e.clientY;
+     });
+ 
+     // Inicjalizacja AudioContext
+     let audioCtx;
+     try {
+       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+       audioCtx = new AudioContextClass();
+ 
+       // Dodajemy obsługę zdarzeń po interakcji użytkownika
+       document.addEventListener('click', function() {
+         if (audioCtx.state === 'suspended') {
+           audioCtx.resume();
+         }
+       });
+ 
+       // Przygotuj dźwięki
+       sounds.forEach(sound => {
+         sound.load();
+       });
+     } catch (e) {
+       console.error("Przeglądarka nie obsługuje Web Audio API:", e);
+     }
+ 
+     // Pobranie HTMLa szablonu zaproszenia
+     const invitationTemplate = `
+ <!DOCTYPE html>
+ <html lang="pl">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Natalia & Konrad - Zaproszenie ślubne</title>
+ 
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+ 
+   <style>
+     :root {
+       --primary-color: #2d2d2d;
+       --accent-color: rgba(180, 160, 120, 0.7);
+       --background-color: #ffffff;
+       --spacing-unit: 7px;
+     }
+ 
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+ 
+     body {
+       background-color: var(--background-color);
+       color: var(--primary-color);
+       font-family: 'Cormorant', serif;
+       min-height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding: calc(var(--spacing-unit) * 1);
+     }
+ 
+     .invitation-wrapper {
+       position: relative;
+       width: 105mm;
+       height: 148mm;
+       overflow: hidden;
+       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+       background-color: #fff;
+       margin: 0 auto;
+     }
+ 
+     .invitation {
+       position: relative;
+       height: 100%;
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding: calc(var(--spacing-unit) * 1.8);
+       text-align: center;
+     }
+ 
+     .border-frame {
+       position: absolute;
+       top: calc(var(--spacing-unit) * 1.2);
+       left: calc(var(--spacing-unit) * 1.2);
+       right: calc(var(--spacing-unit) * 1.2);
+       bottom: calc(var(--spacing-unit) * 1.2);
+       border: 1px solid var(--accent-color);
+       pointer-events: none;
+     }
+ 
+     .content {
+       position: relative;
+       width: 100%;
+       max-width: 85mm;
+       z-index: 2;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+     }
+ 
+     .monogram-container {
+       position: relative;
+       margin: 0 auto calc(var(--spacing-unit) * 1.5);
+       width: 120px;
+       height: 70px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+ 
+     .monogram-divider {
+       position: absolute;
+       height: 70px;
+       width: 1px;
+       background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+       left: 50%;
+       top: 0;
+     }
+ 
+     .monogram {
+       position: absolute;
+       font-family: 'Italiana', serif;
+       font-size: 60px;
+       line-height: 1;
+       color: var(--primary-color);
+     }
+ 
+     .n-letter {
+       left: 8px;
+     }
+ 
+     .k-letter {
+       right: 8px;
+     }
+ 
+     .names {
+       font-family: 'Montserrat', sans-serif;
+       font-size: 11px;
+       letter-spacing: 1.5px;
+       font-weight: 300;
+       text-transform: uppercase;
+       margin-bottom: calc(var(--spacing-unit) * 1.5);
+       color: var(--primary-color);
+     }
+ 
+     .invite-text {
+       font-size: 11px;
+       line-height: 1.6;
+       margin-bottom: calc(var(--spacing-unit) * 1.2);
+       font-weight: 400;
+     }
+ 
+     .guest-name {
+       font-style: italic;
+       font-weight: 400;
+       font-size: 13px;
+       margin: calc(var(--spacing-unit) * 0.5) 0;
+       color: var(--primary-color);
+       display: block;
+     }
+ 
+     .date-container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: calc(var(--spacing-unit) * 1) 0;
+     }
+ 
+     .date-line {
+       height: 1px;
+       width: 40px;
+       background-color: var(--primary-color);
+     }
+ 
+     .date {
+       margin: 0 calc(var(--spacing-unit) * 1);
+       font-size: 28px;
+       font-weight: 400;
+       font-family: 'Italiana', serif;
+     }
+ 
+     .date-details {
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+       max-width: 75mm;
+       margin: 0 auto calc(var(--spacing-unit) * 0.8);
+       font-family: 'Montserrat', sans-serif;
+       font-size: 8px;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       color: var(--primary-color);
+       font-weight: 300;
+     }
+ 
+     .location {
+       margin-top: calc(var(--spacing-unit) * 1.5);
+       font-style: italic;
+       font-size: 13px;
+       line-height: 1.5;
+     }
+ 
+     .divider {
+       height: 1px;
+       width: 40px;
+       background-color: var(--primary-color);
+       margin: calc(var(--spacing-unit) * 1.5) auto;
+       opacity: 0.5;
+     }
+ 
+     .reception-text {
+       font-size: 11px;
+       line-height: 1.5;
+       margin-bottom: calc(var(--spacing-unit) * 1);
+       font-weight: 400;
+     }
+ 
+     .reception-location {
+       font-style: italic;
+       font-size: 13px;
+       line-height: 1.5;
+       margin-bottom: calc(var(--spacing-unit) * 0.4);
+     }
+ 
+     .reception-address {
+       font-size: 10px;
+       line-height: 1.4;
+       margin-bottom: calc(var(--spacing-unit) * 1);
+     }
+ 
+     .additional-info {
+       font-size: 11px;
+       font-style: italic;
+       line-height: 1.6;
+       margin-top: calc(var(--spacing-unit) * 2);
+       color: var(--primary-color);
+     }
+ 
+     @media print {
+       body {
+         background: none;
+         padding: 0;
+         margin: 0;
+         font-size: initial;
+         page-break-after: avoid;
+         page-break-before: avoid;
+         page-break-inside: avoid;
+       }
+ 
+       .invitation-wrapper {
+         box-shadow: none;
+         margin: 0 auto;
+         width: 105mm;
+         height: 148mm;
+         page-break-after: avoid;
+         page-break-before: avoid;
+         page-break-inside: avoid;
+       }
+ 
+       @page {
+         size: 105mm 148mm;
+         margin: 0;
+       }
+     }
+   </style>
+ </head>
+ <body>
+   <div class="invitation-wrapper">
+     <div class="invitation">
+       <div class="border-frame"></div>
+ 
+       <div class="content">
+         <div class="monogram-container">
+           <div class="monogram-divider"></div>
+           <div class="monogram n-letter">N</div>
+           <div class="monogram k-letter">K</div>
+         </div>
+ 
+         <div class="names">NATALIA ZAWADA I KONRAD DZIEDZIC</div>
+ 
+         <div class="invite-text">
+           z radością zapraszają<br>
+           <span class="guest-name">GUEST_NAME_PLACEHOLDER</span>
+           na uroczystość zaślubin,<br>
+           która odbędzie się
+         </div>
+ 
+         <div class="date-container">
+           <div class="date-line"></div>
+           <div class="date">9</div>
+           <div class="date-line"></div>
+         </div>
+ 
+         <div class="date-details">
+           <span>PAŹDZIERNIKA</span>
+           <span>PAŹDZIERNIK</span>
+           <span>2025</span>
+           <span>GODZ. 13:00</span>
+         </div>
+ 
+         <div class="location">
+           w Kościele św. Piotra i Pawła<br>
+           w Skoczowie
+         </div>
+ 
+         <div class="divider"></div>
+ 
+         <div class="reception-text">
+           Po uroczystości zaślubin mamy zaszczyt zaprosić Was<br>
+           na przyjęcie weselne, które odbędzie się
+         </div>
+ 
+         <div class="reception-location">
+           w Winnicy Toskańskiej Romeo i Julia
+         </div>
+ 
+         <div class="reception-address">
+           ul. Myśliwska 1, 43-370 Szczyrk
+         </div>
+ 
         
-        // Podświetl wybraną odpowiedź
-        if (isCorrect) {
-          this.classList.add('correct');
-          quizScore++;
-        } else {
-          this.classList.add('incorrect');
-          // Podświetl poprawną odpowiedź
-          question.querySelector('[data-correct="true"]').classList.add('correct');
-        }
-        
-        // Wyłącz klikanie na opcje
-        options.forEach(opt => {
-          opt.style.pointerEvents = 'none';
-        });
-        
-        // Przejdź do następnego pytania po opóźnieniu
-        setTimeout(() => {
-          // Ukryj aktualne pytanie
-          question.style.display = 'none';
-          
-          // Przejdź do następnego lub zakończ
-          currentQuestion++;
-          if (currentQuestion < quizQuestions.length) {
-            quizQuestions[currentQuestion].style.display = 'block';
-            quizProgress.style.width = `${(currentQuestion + 1) * 10}%`;
-          } else {
-            // Koniec quizu
-            document.getElementById('quizScore').textContent = `${quizScore}/10`;
-            document.getElementById('quizScoreContainer').style.display = 'block';
-            showDownloadScreen();
-          }
-        }, 1000);
-      });
-    });
-  });
-}
-
-// Pokaż quiz
-function showQuiz() {
-  guestListElement.style.display = 'none';
-  searchBox.style.display = 'none';
-  quizContainer.style.display = 'block';
-  statusElement.textContent = 'Rozwiąż quiz, aby pobrać wszystkie zaproszenia';
-  downloadButton.style.display = 'none';
-}
-
-// Ukryj quiz
-function hideQuiz() {
-  quizContainer.style.display = 'none';
-  guestListElement.style.display = 'block';
-  searchBox.style.display = 'block';
-  statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
-  downloadButton.style.display = 'inline-block';
-}
-
-// Pokaż ekran pobierania
-function showDownloadScreen() {
-  quizContainer.style.display = 'none';
-  downloadContainer.style.display = 'block';
-}
-
-// Ukryj ekran pobierania
-function hideDownloadScreen() {
-  downloadContainer.style.display = 'none';
-  guestListElement.style.display = 'block';
-  searchBox.style.display = 'block';
-  statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie';
-  downloadButton.style.display = 'inline-block';
-  
-  // Reset quizu
-  resetQuiz();
-}
-
-// Reset quizu
-function resetQuiz() {
-  currentQuestion = 0;
-  quizScore = 0;
-  document.getElementById('quizScore').textContent = '0/10';
-  document.getElementById('quizScoreContainer').style.display = 'none';
-  quizProgress.style.width = '10%';
-  
-  // Resetuj pytania
-  const quizQuestions = document.querySelectorAll('.quiz-question');
-  quizQuestions.forEach((question, index) => {
-    // Pokaż tylko pierwsze pytanie
-    question.style.display = index === 0 ? 'block' : 'none';
-    
-    // Resetuj opcje
-    const options = question.querySelectorAll('.quiz-option');
-    options.forEach(option => {
-      option.classList.remove('correct', 'incorrect');
-      option.style.pointerEvents = 'auto';
-    });
-  });
-}
-
-  // Funkcja odtwarzająca losowy dźwięk
-function playRandomSound() {
-  if (muted) return;
-  
-  // Losujemy indeks dźwięku, który nie był ostatnio odtwarzany
-  let soundIndex;
-  do {
-    soundIndex = Math.floor(Math.random() * soundsQueue.length);
-  } while (soundIndex === lastSoundIndex);
-  
-  lastSoundIndex = soundIndex;
-  
-  // Odtwarzamy wybrany dźwięk
-  const sound = document.getElementById(`sound${soundsQueue[soundIndex] + 1}`);
-  
-  if (currentSound) {
-    currentSound.pause();
-    currentSound.currentTime = 0;
-  }
-  
-  currentSound = sound;
-  
-  // Możemy odtwarzać dźwięk tylko przy interakcji użytkownika
-  try {
-    sound.play().then(() => {
-      // Pokazujemy obrazek
-      showPopupImage();
-    }).catch(error => {
-      console.log('Autoplay prevented:', error);
-    });
-  } catch (e) {
-    console.log('Error playing sound:', e);
-  }
-}
-
-// Funkcja pokazująca wyskakujący obrazek
-function showPopupImage() {
-  const imageIndex = Math.floor(Math.random() * images.length);
-  popupImage.src = images[imageIndex];
-  
-  // Ustawiamy pozycję obrazka losowo w oknie przeglądarki
-  const maxX = window.innerWidth - 250;
-  const maxY = window.innerHeight - 250;
-  
-  // Ustaw pozycję w pobliżu kursora myszy
-  let posX = mouseX + (Math.random() * 100 - 50);
-  let posY = mouseY + (Math.random() * 100 - 50);
-  
-  // Upewnij się, że obrazek pozostaje w oknie
-  posX = Math.max(0, Math.min(posX, maxX));
-  posY = Math.max(0, Math.min(posY, maxY));
-  
-  popupImage.style.left = `${posX}px`;
-  popupImage.style.top = `${posY}px`;
-  
-  // Pokazujemy obrazek
-  popupImage.classList.add('show');
-  
-  // Ukrywamy obrazek po 3 sekundach
-  setTimeout(() => {
-    popupImage.classList.remove('show');
-  }, 3000);
-}
-
-// Obsługa przycisków klawiatury
-document.addEventListener('keydown', function(event) {
-  // Wyciszenie dźwięku klawiszem 'M'
-  if (event.key === 'm' || event.key === 'M') {
-    muted = !muted;
-    statusElement.textContent = muted ? 
-      'Dźwięki wyciszone. Naciśnij M, aby włączyć.' : 
-      'Dźwięki włączone. Naciśnij M, aby wyciszyć.';
-      
-    setTimeout(() => {
-      if (selectedGuest) {
-        statusElement.textContent = `Zaproszenie dla: ${selectedGuest}`;
-      } else {
-        statusElement.textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
-      }
-    }, 2000);
-  }
-  
-  // Escape zamyka quiz i ekran pobierania
-  if (event.key === 'Escape') {
-    if (quizContainer.style.display !== 'none') {
-      hideQuiz();
-    }
-    if (downloadContainer.style.display !== 'none') {
-      hideDownloadScreen();
-    }
-  }
-});
-
-// Dodatkowe animacje i efekty UX
-function setupAnimations() {
-  // Delikatna animacja nagłówka
-  document.querySelector('h1').classList.add('animate-float');
-  
-  // Animacje hover dla elementów listy
-  const guestItems = document.querySelectorAll('.guest-item');
-  guestItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateX(5px)';
-    });
-    
-    item.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateX(0)';
-    });
-  });
-}
-
-// Funkcje pomocnicze
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Obsługa responsywności
-function handleResize() {
-  const width = window.innerWidth;
-  const container = document.querySelector('.container');
-  
-  if (width < 768) {
-    container.style.boxShadow = 'none';
-    container.style.borderRadius = '0';
-  } else {
-    container.style.boxShadow = 'var(--shadow-lg)';
-    container.style.borderRadius = 'var(--radius-lg)';
-  }
-}
-
-// Nasłuchiwanie zmiany rozmiaru okna
-window.addEventListener('resize', debounce(handleResize, 250));
-
-// Inicjalizacja po załadowaniu strony
-document.addEventListener('DOMContentLoaded', function() {
-  init();
-  handleResize();
-  setupAnimations();
-  
-  // Symulacja ładowania
-  document.body.classList.add('loaded');
-});
-</script>
-</body>
+         <div class="additional-info">
+           "Przy Tobie<br>każde miejsce staje się domem."
+         </div>
+       </div>
+     </div>
+   </div>
+ </body>
+ </html>`;
+ 
+     // Funkcja do wygenerowania spersonalizowanego zaproszenia
+     function generateInvitation(guestName) {
+       // Zastąp placeholder imieniem gościa
+       return invitationTemplate.replace('GUEST_NAME_PLACEHOLDER', guestName);
+     }
+ 
+     // Funkcja do czyszczenia nazwy dla pliku
+     function cleanFileName(name) {
+       return name
+         .replace(/[\/\\:*?"<>|]/g, '_')
+         .replace(/[ąćęłńóśźż]/gi, function(match) {
+           const polishChars = {
+             'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 
+             'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
+             'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N', 
+             'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z'
+           };
+           return polishChars[match] || match;
+         })
+         .replace(/\s+/g, '_');
+     }
+ 
+     // Funkcja do losowego umieszczania zdjęcia
+     function showRandomImage() {
+       const popupImage = document.getElementById('popupImage');
+ 
+       // Wybierz losowy obraz
+       const randomImageIndex = Math.floor(Math.random() * images.length);
+       popupImage.src = images[randomImageIndex];
+ 
+       // Pobierz wymiary okna przeglądarki
+       const windowWidth = window.innerWidth;
+       const windowHeight = window.innerHeight;
+ 
+       // Ustaw maksymalne wymiary obrazka
+       const imgMaxWidth = 250;
+       const imgMaxHeight = 250;
+ 
+       // Wyśrodkuj zdjęcie na pozycji kursora
+       const posX = Math.max(20, Math.min(windowWidth - imgMaxWidth - 20, mouseX - imgMaxWidth/2));
+       const posY = Math.max(20, Math.min(windowHeight - imgMaxHeight - 20, mouseY - imgMaxHeight/2));
+ 
+       // Losowa rotacja
+       const rotation = Math.floor(Math.random() * 20) - 10; // Od -10 do 10 stopni
+ 
+       // Zastosuj styl
+       popupImage.style.left = posX + 'px';
+       popupImage.style.top = posY + 'px';
+       popupImage.style.transform = `rotate(${rotation}deg)`;
+ 
+       // Pokaż zdjęcie
+       popupImage.classList.add('show');
+ 
+       // Wybierz losowy dźwięk i odtwórz
+       if (!muted) {
+         // Ścieżki do plików dźwiękowych
+         const soundPaths = [
+           "dzwieki/065392_long-wet-fart-54798.mp3",
+           "dzwieki/wet-fart-2-42358.mp3",
+           "dzwieki/wet-fart-6139.mp3",
+           "dzwieki/wet-fart-42422.mp3"
+         ];
+ 
+         // Zatrzymaj aktualnie odtwarzany dźwięk jeśli istnieje
+         if (currentSound) {
+           currentSound.pause();
+           currentSound = null;
+         }
+ 
+         // Używamy zamiast losowania kolejki dźwięków
+         // Pobieramy następny indeks z kolejki i ustawiamy go na koniec
+         if (soundsQueue.length === 0) {
+           // Jeśli kolejka jest pusta, zresetuj ją
+           soundsQueue = [0, 1, 2, 3];
+           // Mieszamy kolejkę aby nie było widocznego powtarzalnego wzorca
+           shuffleArray(soundsQueue);
+         }
+ 
+         // Pobierz następny indeks z kolejki
+         const nextSoundIndex = soundsQueue.shift();
+ 
+         console.log("Używam dźwięku o indeksie:", nextSoundIndex);
+         const soundPath = soundPaths[nextSoundIndex];
+ 
+         // Utwórz nowy obiekt audio
+         const sound = new Audio(soundPath);
+         currentSound = sound;
+ 
+         // Odtwórz dźwięk
+         console.log("Próba odtworzenia dźwięku:", soundPath);
+         sound.play()
+           .then(() => console.log("Dźwięk odtworzony pomyślnie!"))
+           .catch(error => console.error("Błąd podczas odtwarzania dźwięku:", error));
+ 
+         // Dodajemy obsługę zakończenia dźwięku, aby ukryć zdjęcie
+         sound.onended = function() {
+           popupImage.classList.remove('show');
+           currentSound = null;
+           console.log("Dźwięk zakończony, ukrywam zdjęcie");
+         };
+       } else {
+         // Jeśli wyciszone, ukryj zdjęcie po 3 sekundach
+         setTimeout(() => {
+           popupImage.classList.remove('show');
+         }, 3000);
+       }
+     }
+ 
+     // Funkcja do mieszania tablicy (algorytm Fisher-Yates)
+     function shuffleArray(array) {
+       for (let i = array.length - 1; i > 0; i--) {
+         const j = Math.floor(Math.random() * (i + 1));
+         [array[i], array[j]] = [array[j], array[i]];
+       }
+       return array;
+     }
+ 
+     // Wygeneruj listę gości
+     const guestListElement = document.getElementById('guestList');
+     const searchBox = document.getElementById('searchBox');
+ 
+     function renderGuestList(filteredList = guestList) {
+       // Wyczyść listę
+       guestListElement.innerHTML = '';
+ 
+       // Dodaj gości do listy
+       filteredList.forEach((guest, index) => {
+         const guestItem = document.createElement('div');
+         guestItem.className = 'guest-item';
+         guestItem.textContent = guest;
+         guestItem.setAttribute('data-index', index);
+ 
+         guestItem.addEventListener('click', function() {
+           // Usuń zaznaczenie z poprzednio wybranego gościa
+           const selectedItems = document.querySelectorAll('.guest-item.selected');
+           selectedItems.forEach(item => item.classList.remove('selected'));
+ 
+           // Zaznacz klikniętego gościa
+           this.classList.add('selected');
+ 
+           // Wygeneruj zaproszenie
+           const guestName = this.textContent;
+           const invitation = generateInvitation(guestName);
+ 
+           // Wyświetl w iframe
+           const previewFrame = document.getElementById('previewFrame');
+           previewFrame.srcdoc = invitation;
+ 
+           // Aktualizuj status
+           document.getElementById('status').textContent = `Wygenerowano zaproszenie dla: ${guestName}`;
+ 
+           // Pokaż losowe zdjęcie i odtwórz dźwięk
+           showRandomImage();
+         });
+ 
+         guestListElement.appendChild(guestItem);
+       });
+     }
+ 
+     // Filtrowanie listy gości
+     searchBox.addEventListener('input', function() {
+       const searchTerm = this.value.toLowerCase();
+       const filteredList = guestList.filter(guest => 
+         guest.toLowerCase().includes(searchTerm)
+       );
+       renderGuestList(filteredList);
+     });
+ 
+     // Inicjalizuj listę gości
+     renderGuestList();
+ 
+     // Automatycznie wybierz pierwszego gościa
+     if (guestList.length > 0) {
+       setTimeout(() => {
+         const firstGuestItem = document.querySelector('.guest-item');
+         if (firstGuestItem) {
+           firstGuestItem.click();
+         }
+       }, 500);
+     }
+ 
+     // Dodajemy kod do wymuszenia inicjalizacji dźwięków
+     window.addEventListener('load', function() {
+       // Funkcja do inicjalizacji dźwięków
+       function initSounds() {
+         sounds.forEach(sound => {
+           // Ustawiamy głośność na 0 i próbujemy odtworzyć, aby zainicjalizować
+           sound.volume = 0;
+           sound.play().then(() => {
+             // Od razu zatrzymujemy dźwięk
+             sound.pause();
+             sound.currentTime = 0;
+             // Przywracamy głośność
+             sound.volume = 1;
+             console.log('Dźwięk zainicjalizowany:', sound.src);
+           }).catch(e => {
+             console.log('Nie można zainicjalizować dźwięku, spróbuj kliknąć na stronie:', e);
+           });
+         });
+       }
+ 
+       // Próbujemy zainicjalizować dźwięki po załadowaniu
+       setTimeout(initSounds, 1000);
+ 
+       // Dodajemy nasłuchiwanie kliknięcia na całej stronie, aby zainicjalizować dźwięki
+       document.addEventListener('click', function initOnClick() {
+         initSounds();
+         // Usuwamy nasłuchiwanie po pierwszym kliknięciu
+         document.removeEventListener('click', initOnClick);
+       });
+     });
+ 
+     // Dodajemy obsługę quizu i pobierania
+     document.getElementById('downloadButton').addEventListener('click', function() {
+       // Ukryj listę gości i pokaż quiz
+       document.getElementById('guestList').style.display = 'none';
+       document.getElementById('searchBox').style.display = 'none';
+       document.getElementById('quizContainer').style.display = 'block';
+       document.getElementById('status').textContent = 'Odpowiedz poprawnie na pytania, aby pobrać zaproszenia.';
+ 
+       // Resetuj quiz
+       const quizQuestions = document.querySelectorAll('.quiz-question');
+       quizQuestions.forEach((q, i) => {
+         q.style.display = i === 0 ? 'block' : 'none';
+       });
+       let currentQuestion = 0;
+     });
+ 
+     // Dodajemy obsługę odpowiedzi w quizie
+     const quizQuestions = document.querySelectorAll('.quiz-question');
+     let currentQuestion = 0;
+ 
+     // Dla każdego pytania dodajemy obsługę opcji
+     quizQuestions.forEach((question, questionIndex) => {
+       const options = question.querySelectorAll('.quiz-option');
+ 
+       options.forEach(option => {
+         option.addEventListener('click', function() {
+           // Sprawdź, czy odpowiedź jest poprawna
+           const isCorrect = this.getAttribute('data-correct') === 'true';
+ 
+           if (isCorrect || questionIndex === 9) { // Na ostatnim pytaniu wszystkie odpowiedzi są poprawne
+             // Poprawna odpowiedź!
+             // Ukryj aktualne pytanie
+             quizQuestions[currentQuestion].style.display = 'none';
+ 
+             // Przejdź do następnego pytania lub pokaż ekran pobierania
+             currentQuestion++;
+ 
+             if (currentQuestion < quizQuestions.length) {
+               // Pokaż następne pytanie
+               quizQuestions[currentQuestion].style.display = 'block';
+             } else {
+               // To było ostatnie pytanie, pokaż ekran pobierania
+               document.getElementById('quizContainer').style.display = 'none';
+               document.getElementById('downloadContainer').style.display = 'block';
+               document.getElementById('status').textContent = 'Quiz ukończony! Możesz pobrać zaproszenia.';
+             }
+           } else {
+             // Niepoprawna odpowiedź!
+             alert('Niepoprawna odpowiedź! Dawid Stelmach jest znacznie wspanialszy niż myślisz!');
+           }
+         });
+       });
+     });
+ 
+     // Obsługa przycisku końcowego pobierania
+     document.getElementById('finalDownloadButton').addEventListener('click', function(e) {
+       e.preventDefault();
+ 
+       // Przekierowanie do folderu Google Drive z zaproszeniami
+       window.open('https://drive.google.com/drive/folders/1oADQoCfWjJzE7C5mThPZydfv4WcxiMDD?usp=sharing', '_blank');
+     });
+ 
+     // Obsługa przycisku powrotu z ekranu pobierania
+     document.getElementById('backFromDownloadButton').addEventListener('click', function() {
+       // Ukryj ekran pobierania
+       document.getElementById('downloadContainer').style.display = 'none';
+ 
+       // Pokaż listę gości i pole wyszukiwania
+       document.getElementById('guestList').style.display = 'block';
+       document.getElementById('searchBox').style.display = 'block';
+ 
+       // Resetuj status
+       document.getElementById('status').textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
+ 
+       // Zresetuj quiz
+       currentQuestion = 0;
+       quizQuestions.forEach((q, i) => {
+         q.style.display = i === 0 ? 'block' : 'none';
+       });
+     });
+ 
+     // Obsługa przycisku powrotu do listy zaproszeń
+     document.getElementById('backToListButton').addEventListener('click', function() {
+       // Ukryj quiz
+       document.getElementById('quizContainer').style.display = 'none';
+ 
+       // Pokaż listę gości i pole wyszukiwania
+       document.getElementById('guestList').style.display = 'block';
+       document.getElementById('searchBox').style.display = 'block';
+ 
+       // Resetuj status
+       document.getElementById('status').textContent = 'Wybierz gościa z listy, aby wygenerować zaproszenie.';
+     });
+   </script>
+ </body>
+ </html> 
